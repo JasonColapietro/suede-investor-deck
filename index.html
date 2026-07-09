@@ -9,6 +9,8 @@
 <meta name="author" content="Jason Colapietro">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="https://jasoncolapietro.github.io/suede-investor-deck/">
+<link rel="icon" href="assets/mark.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/mark.png">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -134,6 +136,11 @@ strong{color:var(--text);font-weight:700}.cy{color:var(--cyan)}.em{color:var(--e
 .cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.8rem;background:var(--red);color:#fff;font-weight:700;
   padding:.95rem 1.7rem;border-radius:7px;text-decoration:none;font-size:1.1rem}
 .cta:hover{background:var(--red2)}
+a:focus-visible,.cta:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){
+  .deck{scroll-behavior:auto;scroll-snap-type:none}
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
 .ledger{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:1.4rem}
 .ledger th,.ledger td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
 .ledger th{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
@@ -167,10 +174,10 @@ strong{color:var(--text);font-weight:700}.cy{color:var(--cyan)}.em{color:var(--e
 
   <!-- 1 COVER -->
   <section class="slide cover">
-    <img class="bgimg" src="assets/cover-bg.png" alt="">
+    <img class="bgimg" src="assets/cover-bg.png" alt="" width="2880" height="1620" fetchpriority="high">
     <div class="scrim"></div>
     <div class="wrap">
-      <img class="wordmark" src="assets/wordmark.png" alt="Suede Labs AI">
+      <img class="wordmark" src="assets/wordmark.png" alt="Suede Labs AI" width="3840" height="1560">
       <p class="kick" style="color:#fff">Investor Brief · 2026</p>
       <h1>The ownership layer<br>for the <span class="cy">AI media era.</span></h1>
       <div class="cover-meta">
@@ -214,7 +221,7 @@ strong{color:var(--text);font-weight:700}.cy{color:var(--cyan)}.em{color:var(--e
     <div class="tint grid"></div>
     <div class="wrap two imgL">
       <div style="text-align:center">
-        <img src="assets/mark.png" alt="Suede mark" style="width:min(64%,240px);filter:drop-shadow(0 14px 44px rgba(0,0,0,.55))">
+        <img src="assets/mark.png" alt="Suede mark" width="400" height="400" loading="lazy" decoding="async" style="width:min(64%,240px);filter:drop-shadow(0 14px 44px rgba(0,0,0,.55))">
       </div>
       <div>
         <p class="kick">03 · What Suede is</p>
@@ -243,8 +250,8 @@ strong{color:var(--text);font-weight:700}.cy{color:var(--cyan)}.em{color:var(--e
         </ul>
       </div>
       <div class="shot-stack">
-        <img class="shot" src="assets/product-vaults.png" alt="Suede artist royalty vaults">
-        <img class="inset" src="assets/product-swap.png" alt="Suede swap, live">
+        <img class="shot" src="assets/product-vaults.png" alt="Suede artist royalty vaults" width="1280" height="709" loading="lazy" decoding="async">
+        <img class="inset" src="assets/product-swap.png" alt="Suede swap, live" width="527" height="633" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -273,14 +280,14 @@ strong{color:var(--text);font-weight:700}.cy{color:var(--cyan)}.em{color:var(--e
       <p class="kick">06 · Built on / integrated / partnered</p>
       <h2>Standing on serious rails.</h2>
       <div class="logos">
-        <div class="logo"><img src="assets/partners/mono/base.png" alt="Base"></div>
-        <div class="logo"><img src="assets/partners/stripe.svg" alt="Stripe"></div>
-        <div class="logo"><img src="assets/partners/google-cloud.svg" alt="Google Cloud"></div>
-        <div class="logo"><img src="assets/partners/chainlink.svg" alt="Chainlink"></div>
-        <div class="logo"><img src="assets/partners/mono/layerzero.png" alt="LayerZero"></div>
-        <div class="logo"><img src="assets/partners/mono/virtuals.png" alt="Virtuals"></div>
-        <div class="logo"><img src="assets/partners/chaingpt.svg" alt="ChainGPT"></div>
-        <div class="logo"><img src="assets/partners/mono/agentcash.png" alt="AgentCash"></div>
+        <div class="logo"><img src="assets/partners/mono/base.png" alt="Base" width="256" height="256" loading="lazy" decoding="async"></div>
+        <div class="logo"><img src="assets/partners/stripe.svg" alt="Stripe" width="24" height="24" loading="lazy" decoding="async"></div>
+        <div class="logo"><img src="assets/partners/google-cloud.svg" alt="Google Cloud" width="24" height="24" loading="lazy" decoding="async"></div>
+        <div class="logo"><img src="assets/partners/chainlink.svg" alt="Chainlink" width="24" height="24" loading="lazy" decoding="async"></div>
+        <div class="logo"><img src="assets/partners/mono/layerzero.png" alt="LayerZero" width="256" height="256" loading="lazy" decoding="async"></div>
+        <div class="logo"><img src="assets/partners/mono/virtuals.png" alt="Virtuals" width="256" height="256" loading="lazy" decoding="async"></div>
+        <div class="logo"><img src="assets/partners/chaingpt.svg" alt="ChainGPT" width="34" height="34" loading="lazy" decoding="async"></div>
+        <div class="logo"><img src="assets/partners/mono/agentcash.png" alt="AgentCash" width="256" height="256" loading="lazy" decoding="async"></div>
       </div>
       <p class="note">Settlement on Base · payments via Stripe &amp; x402 · oracles via Chainlink · cross-chain via LayerZero · agent commerce via Virtuals · agent payments via AgentCash. Google Cloud Partner · ecosystem partner ChainGPT.</p>
     </div>
@@ -356,14 +363,14 @@ strong{color:var(--text);font-weight:700}.cy{color:var(--cyan)}.em{color:var(--e
   <section class="slide">
     <div class="tint grid"></div>
     <div class="wrap two imgL">
-      <div><img class="founder-img" src="assets/founder.png" alt="Jason Colapietro, Founder and CEO of Suede Labs AI"></div>
+      <div><img class="founder-img" src="assets/founder.png" alt="Jason Colapietro, Founder and CEO of Suede Labs AI" width="1060" height="1484" loading="lazy" decoding="async"></div>
       <div>
         <p class="kick">10 · Founder</p>
         <h2 style="font-size:clamp(2rem,1rem+2.6vw,3.4rem)">Jason Colapietro</h2>
         <p class="lede" style="margin-top:.8rem"><strong>Founder &amp; CEO, Suede Labs AI</strong> · "Johnny Suede." Published author of three books; solo operator behind the shipped Suede ecosystem.</p>
         <p class="pull" style="margin-top:1.4rem">"The internet upgraded access. AI upgraded creation. <span class="cy" style="font-style:normal">The next layer has to upgrade ownership.</span>"</p>
         <div style="display:flex;align-items:center;gap:1.2rem;margin-top:1.6rem">
-          <img class="book" src="assets/book.jpg" alt="Stake Your Claim">
+          <img class="book" src="assets/book.jpg" alt="Stake Your Claim" width="1600" height="2400" loading="lazy" decoding="async">
           <p class="note" style="margin:0">Author of three books, including <em>Stake Your Claim</em> — the thesis on AI ownership, authorship &amp; durable creative rights.</p>
         </div>
       </div>
@@ -372,7 +379,7 @@ strong{color:var(--text);font-weight:700}.cy{color:var(--cyan)}.em{color:var(--e
 
   <!-- 12 THE ASK -->
   <section class="slide">
-    <img class="bgimg" src="assets/split-bg.png" alt="" style="opacity:.5">
+    <img class="bgimg" src="assets/split-bg.png" alt="" width="2880" height="1620" loading="lazy" decoding="async" style="opacity:.5">
     <div class="scrim" style="background:linear-gradient(180deg,rgba(5,11,22,.7),rgba(5,11,22,.92))"></div>
     <div class="wrap">
       <p class="kick">11 · The ask</p>
@@ -415,15 +422,16 @@ strong{color:var(--text);font-weight:700}.cy{color:var(--cyan)}.em{color:var(--e
 (function(){
   var deck=document.getElementById('deck'),slides=[].slice.call(deck.querySelectorAll('.slide'));
   var cur=document.getElementById('cur'),prog=document.getElementById('prog'),n=slides.length;
+  var reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
   function idx(){var y=deck.scrollTop+innerHeight*0.4,i=0;for(var j=0;j<n;j++)if(slides[j].offsetTop<=y)i=j;return i}
   function up(){var i=idx();cur.textContent=String(i+1).padStart(2,'0');prog.style.width=((i+1)/n*100)+'%'}
   deck.addEventListener('scroll',function(){requestAnimationFrame(up)},{passive:true});
-  function go(d){var i=Math.max(0,Math.min(n-1,idx()+d));deck.scrollTo({top:slides[i].offsetTop,behavior:'smooth'})}
+  function go(d){var i=Math.max(0,Math.min(n-1,idx()+d));deck.scrollTo({top:slides[i].offsetTop,behavior:reduceMotion?'auto':'smooth'})}
   addEventListener('keydown',function(e){
     if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key) && document.activeElement===document.body){e.preventDefault();go(1)}
     else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(-1)}
-    else if(e.key==='Home')deck.scrollTo({top:0,behavior:'smooth'});
-    else if(e.key==='End')deck.scrollTo({top:deck.scrollHeight,behavior:'smooth'});
+    else if(e.key==='Home')deck.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'});
+    else if(e.key==='End')deck.scrollTo({top:deck.scrollHeight,behavior:reduceMotion?'auto':'smooth'});
   });
   up();
 })();
