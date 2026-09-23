@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suede AI Agent Studio — Investor Brief</title>
+<meta name="description" content="Suede AI Agent Studio: a visual agent builder where every workflow launches as a paid endpoint. Humans pay by card, agents pay per call in USDC. 2026 investor brief.">
+<meta name="author" content="Jason Colapietro">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../assets/mark.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/mark.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Suede AI Agent Studio — Build agents that get work done, and get paid">
+<meta property="og:description" content="A visual agent builder where every workflow launches as a paid endpoint. 2026 investor brief.">
+<meta property="og:image" content="https://jasoncolapietro.github.io/suede-investor-deck/assets/agent-studio/seat-flow-service.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@18..72,400;18..72,500;18..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#050b16; --panel:#0a121f; --control:#0e1828;
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.18);
+  --cyan:#22d3ee; --red:#c8141f; --red2:#ff5a63; --emerald:#34d399; --sky:#38bdf8;
+  --text:#f3f6fb; --muted:rgba(243,246,251,.66); --faint:rgba(243,246,251,.55);
+  --sans:'Geist',system-ui,sans-serif; --mono:'Geist Mono',ui-monospace,monospace; --serif:'Instrument Serif',Georgia,serif;
+  --display:'Newsreader',Georgia,serif;
+  --pad:clamp(2.4rem,1.6rem+3vw,5rem);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+.deck{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.deck::-webkit-scrollbar{width:0}
+.slide{position:relative;min-height:100vh;width:100%;scroll-snap-align:start;display:flex;flex-direction:column;
+  justify-content:center;padding:var(--pad);overflow:hidden;border-bottom:1px solid rgba(255,255,255,.04)}
+.wrap{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto}
+.kick{font-family:var(--mono);font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);
+  margin-bottom:1.1rem;display:flex;align-items:center;gap:.7rem}
+.kick::before{content:"";width:1.6rem;height:1px;background:var(--cyan)}
+h1{font-family:var(--display);font-weight:600;letter-spacing:-.015em;line-height:1.0;font-size:clamp(2.8rem,1rem+6vw,6.4rem)}
+h2{font-family:var(--display);font-weight:500;letter-spacing:-.005em;line-height:1.07;font-size:clamp(2.2rem,1.1rem+3.4vw,4.3rem);max-width:22ch}
+.lede{color:var(--muted);font-size:clamp(1.1rem,1rem+.7vw,1.55rem);line-height:1.45;max-width:60ch;margin-top:1.4rem}
+.serif{font-family:var(--serif);font-style:italic}
+strong{color:var(--text);font-weight:700}.cy{color:var(--cyan)}.em{color:var(--emerald)}
+/* atmospheric base */
+.tint{position:absolute;inset:0;z-index:0}
+.tint.grid::after{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 85% 0%,#000,transparent 70%);opacity:.28}
+.bgimg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover}
+.scrim{position:absolute;inset:0;z-index:1}
+/* COVER */
+.cover{justify-content:flex-end}
+.cover .scrim{background:linear-gradient(180deg,rgba(5,11,22,.55) 0%,rgba(5,11,22,.2) 35%,rgba(5,11,22,.85) 100%)}
+.cover .wordmark{height:clamp(46px,7vw,104px);width:auto;margin-bottom:1.5rem;filter:drop-shadow(0 6px 30px rgba(0,0,0,.5))}
+.cover h1{font-size:clamp(2.6rem,1rem+5.6vw,6rem);max-width:16ch}
+.cover-meta{display:flex;flex-wrap:wrap;gap:2.4rem;margin-top:2rem;font-family:var(--mono);font-size:.8rem;color:var(--muted);letter-spacing:.03em}
+.cover-meta b{color:var(--text);font-weight:600;display:block;margin-top:.2rem}
+.badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--emerald)}
+.badge::before{content:"";width:.42rem;height:.42rem;border-radius:50%;background:var(--emerald)}
+/* layout helpers */
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,1rem+3vw,4.5rem);align-items:center}
+.two.imgL{grid-template-columns:.9fr 1.1fr}
+.cards{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:1.8rem}
+.c4{grid-template-columns:repeat(4,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c2{grid-template-columns:1fr 1fr}
+.cell{background:var(--panel);padding:1.7rem 1.6rem}
+.cell .n{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+.cell h3{font-size:1.3rem;font-weight:750;margin:.5rem 0 .45rem}
+.cell p{color:var(--muted);font-size:.97rem;line-height:1.45}
+/* product frames */
+.shot{border-radius:12px;border:1px solid var(--line2);box-shadow:0 30px 80px -30px rgba(0,0,0,.8),0 0 0 1px rgba(0,0,0,.4);display:block;width:100%}
+.shot-stack{position:relative}
+.shot-stack .inset{position:absolute;right:-4%;bottom:-10%;width:38%;border-radius:10px;border:1px solid var(--line2);box-shadow:0 24px 60px -20px rgba(0,0,0,.85)}
+/* partner rail — uniform monochrome marks on dark, hairline dividers */
+.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:2rem;
+  background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.logo{display:flex;align-items:center;justify-content:center;height:116px;padding:1.4rem;
+  background:var(--panel);transition:background .25s ease}
+.logo:hover{background:var(--control)}
+.logo img{max-height:34px;max-width:64%;object-fit:contain;
+  filter:brightness(0) invert(1);opacity:.62;transition:opacity .25s ease}
+.logo:hover img{opacity:1}
+/* big numbers */
+.bignums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:2rem}
+.bignums div{background:var(--panel);padding:1.7rem 1.4rem}
+.bignums .v{font-family:var(--display);font-weight:600;font-size:clamp(2.3rem,1rem+2.9vw,3.7rem);letter-spacing:-.01em;line-height:1}
+.bignums .v.cy{color:var(--cyan)}
+.bignums .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.55rem}
+.signals{list-style:none;margin-top:1.6rem;display:grid;gap:.9rem;max-width:62ch}
+.signals li{padding-left:1.9rem;position:relative;color:var(--muted);font-size:1.05rem;line-height:1.5}
+.signals li::before{content:"";position:absolute;left:0;top:.72em;width:13px;height:1px;background:rgba(255,255,255,.5)}
+/* pipeline (four stages) */
+.pipe{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;margin:3rem 0 1.4rem}
+.pipe .rail{position:absolute;top:36px;left:9%;right:9%;height:2px;background:linear-gradient(90deg,var(--line2),var(--cyan),var(--line2));z-index:0}
+.pipe .stage{position:relative;z-index:1;text-align:center}
+.pipe .node{width:72px;height:72px;border-radius:50%;margin:0 auto 1.1rem;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-weight:600;font-size:1.35rem;color:var(--muted);background:var(--control);border:1px solid var(--line2)}
+.pipe .stage.hot .node{color:#031018;background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 0 5px rgba(34,211,238,.1),0 0 24px rgba(34,211,238,.22)}
+.pipe .sname{font-weight:800;font-size:1.55rem;letter-spacing:-.01em;margin-bottom:.5rem}
+.pipe .stage.hot .sname{color:var(--cyan)}
+.pipe .stage p{color:var(--muted);font-size:.95rem;line-height:1.45;max-width:24ch;margin:0 auto}
+.wedge{display:inline-block;margin-top:.75rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cyan);border:1px solid var(--line2);border-radius:999px;padding:.28rem .75rem}
+@media(max-width:860px){.pipe{grid-template-columns:1fr 1fr;gap:2rem}.pipe .rail{display:none}}
+.note{font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.03em;margin-top:1.4rem;line-height:1.6}
+/* market */
+.mkt{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,1rem+2vw,3.2rem);align-items:center;margin-top:1.6rem}
+.mcard{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:1.5rem}
+.mcard .n{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.mcard .v{font-family:var(--display);font-weight:600;font-size:clamp(2rem,1rem+2.2vw,3rem);letter-spacing:-.01em;margin:.3rem 0}
+.mcard p{color:var(--muted);font-size:.9rem;line-height:1.4}
+.chart{width:100%;height:auto}
+/* founder */
+.founder-img{width:100%;border-radius:12px;border:1px solid var(--line2);box-shadow:0 30px 80px -30px rgba(0,0,0,.8)}
+.book{width:120px;border-radius:4px;box-shadow:0 16px 40px -12px rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.1)}
+.pull{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,1rem+2vw,2.6rem);line-height:1.2}
+.cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.8rem;background:var(--red);color:#fff;font-weight:700;
+  padding:.95rem 1.7rem;border-radius:7px;text-decoration:none;font-size:1.1rem}
+.cta:hover{background:var(--red2)}
+a:focus-visible,.cta:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){
+  .deck{scroll-behavior:auto;scroll-snap-type:none}
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+.ledger{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:1.4rem}
+.ledger th,.ledger td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
+.ledger th{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+.ledger td:first-child{color:var(--text);font-weight:600;white-space:nowrap}.ledger td{color:var(--muted)}.ledger a{color:var(--sky)}
+/* chrome */
+.wm{position:fixed;top:1.4rem;left:var(--pad);font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);z-index:60}
+.wm b{color:var(--text)}
+.counter{position:fixed;bottom:1.3rem;right:var(--pad);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted);z-index:60}
+.counter b{color:var(--cyan)}
+.conf{position:fixed;bottom:1.3rem;left:var(--pad);font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);z-index:60}
+.prog{position:fixed;top:0;left:0;height:2px;background:var(--cyan);width:0;z-index:70;transition:width .25s}
+@media (max-width:860px){
+  .two,.two.imgL,.mkt{grid-template-columns:1fr}.c4,.c3{grid-template-columns:1fr 1fr}
+  .bignums,.logos{grid-template-columns:1fr 1fr}.shot-stack .inset{position:static;width:60%;margin:1rem auto 0;display:block}
+}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  body,.deck{height:auto;overflow:visible;display:block}.deck{scroll-snap-type:none}
+  .slide{min-height:720px;page-break-after:always;border:0;overflow:visible}
+  .wm,.counter,.conf,.prog{position:absolute}
+}
+
+/* Agent Studio variant additions */
+.tk{outline:1px dashed #f5b942;outline-offset:3px;border-radius:3px}
+.tk-tag{display:inline-block;margin-left:.4rem;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;
+  color:#1a1206;background:#f5b942;border-radius:3px;padding:.1rem .35rem;vertical-align:middle}
+.vs{width:100%;border-collapse:collapse;margin-top:1.8rem;font-size:1rem}
+.vs th,.vs td{padding:1rem 1.1rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.vs th{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+.vs td{color:var(--muted)}.vs td:first-child{color:var(--text);font-weight:650}
+.vs tr.us td{background:rgba(34,211,238,.06);color:var(--text)}.vs tr.us td:first-child{color:var(--cyan)}
+.yes{color:var(--emerald)}.no{color:var(--faint)}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="wm"><b>SUEDE AI AGENT STUDIO</b> · Investor Brief</div>
+<div class="conf">Confidential</div>
+<div class="counter"><b id="cur">01</b> / <span id="tot">--</span></div>
+
+<main class="deck" id="deck">
+
+  <!-- COVER -->
+  <section class="slide cover">
+    <img class="bgimg" src="../assets/cover-bg.png" alt="" width="2880" height="1620" fetchpriority="high">
+    <div class="scrim"></div>
+    <div class="wrap">
+      <img class="wordmark" src="../assets/wordmark.png" alt="Suede Labs AI" width="3840" height="1560">
+      <p class="kick" style="color:#fff">Suede AI Agent Studio · Investor Brief · 2026</p>
+      <h1>Build agents that get work done, <span class="cy">and get paid.</span></h1>
+      <div class="cover-meta">
+        <span>Founder &amp; CEO<b>Jason Colapietro</b></span>
+        <span>Product<b>agents.suedeai.ai</b></span>
+        <span><span class="badge">Live in production</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap">
+      <p class="kick">01 · The problem</p>
+      <h2>Anyone can build an agent.<br>Almost no one can sell one.</h2>
+      <div class="two" style="margin-top:1.8rem">
+        <p class="lede" style="margin:0">Workflow builders automate <em>your own</em> work. The moment a useful agent should serve someone else, you are rebuilding hosting, accounts, API keys, metering, billing, and trust by hand.</p>
+        <p class="lede" style="margin:0">And the next buyer is often <strong>another agent</strong>. It can't fill out a checkout form or wait for an API key. It needs a price, a payment rail, and a receipt it can read.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY NOW -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap">
+      <p class="kick">02 · Why now</p>
+      <h2>The rails for agents to pay each other just arrived.</h2>
+      <div class="cards c3">
+        <div class="cell"><span class="n">New buyers</span><h3>Agents are buying</h3><p>Agent-driven commerce is projected at $190B–$385B in US GMV by 2030.</p></div>
+        <div class="cell"><span class="n">New rails</span><h3>Payments standardized</h3><p>x402, A2A, MCP, Virtuals ACP, and the Agentic Commerce Protocol from Stripe and OpenAI give agents a common way to discover, call and pay.</p></div>
+        <div class="cell"><span class="n">New trust</span><h3>On-chain identity</h3><p>ERC-8004 identity, reputation and validation let a buyer check who it is paying before it pays.</p></div>
+      </div>
+      <p class="note">The question isn't who can build an agent. It's where agents get built, priced and paid.</p>
+    </div>
+  </section>
+
+  <!-- WHAT IT IS -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap">
+      <p class="kick">03 · What Agent Studio is</p>
+      <h2>One canvas. Every flow is a product.</h2>
+      <p class="lede">Wire specialized agents on a visual canvas, then launch the flow as a paid service in one step. <strong>Humans pay by card; agents pay per call in USDC.</strong> Every launch is discoverable over MCP, A2A, OpenAPI and x402.</p>
+      <img class="shot" src="../assets/agent-studio/seat-flow-service.jpg" alt="Suede Agent Studio: the same agent as a seat, a flow and a paid endpoint" width="1200" height="630" loading="lazy" decoding="async" style="margin-top:1.6rem;width:auto;max-width:100%;max-height:52vh">
+    </div>
+  </section>
+
+  <!-- PROTOCOLS -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap">
+      <p class="kick">04 · Protocols</p>
+      <h2>Every flow speaks every agent protocol.</h2>
+      <p class="lede">Launch once and the flow can be discovered, called and paid through the protocols agents already use. No integration work for the creator.</p>
+      <div class="cards c4">
+        <div class="cell"><span class="n">Payments · Live</span><h3>x402</h3><p>Pay per call in USDC on Base. No account or API key needed.</p></div>
+        <div class="cell"><span class="n">Agent-to-agent · Live</span><h3>A2A</h3><p>Each flow publishes an agent card, so other agents can find it and call it directly.</p></div>
+        <div class="cell"><span class="n">Assistants · Live</span><h3>MCP + WebMCP</h3><p>Flows become tools for AI assistants and for in-browser agents.</p></div>
+        <div class="cell"><span class="n">Marketplaces · Live</span><h3>ACP (Virtuals)</h3><p>Suede agents take and fulfill jobs on Virtuals' Agent Commerce Protocol.</p></div>
+        <div class="cell"><span class="n">Identity · Live</span><h3>ERC-8004</h3><p>On-chain identity, reputation and validation on Base mainnet.</p></div>
+        <div class="cell"><span class="n">Developers · Live</span><h3>OpenAPI</h3><p>A standard API spec for every launched flow, usable from any codebase.</p></div>
+        <div class="cell"><span class="n">Humans · Live</span><h3>Stripe</h3><p>Card top-ups into a credit ledger for people who don't hold USDC.</p></div>
+        <div class="cell"><span class="n">Next</span><h3>Agentic Commerce Protocol</h3><p>The Stripe and OpenAI checkout standard, the next rail on the roadmap.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap">
+      <p class="kick">05 · How it works</p>
+      <h2>Build. Test. Launch. Earn.</h2>
+      <div class="pipe">
+        <div class="rail"></div>
+        <div class="stage"><div class="node">01</div><div class="sname">Build</div><p>Drag nodes or start from a template: contract review, lead scoring, invoice chasing, support triage.</p></div>
+        <div class="stage"><div class="node">02</div><div class="sname">Test</div><p>Free dry-runs keep payments and side effects out until the flow is right.</p></div>
+        <div class="stage hot"><div class="node">03</div><div class="sname">Launch</div><p>Promote an exact reviewed version to a live, priced endpoint.</p><span class="wedge">The step others skip</span></div>
+        <div class="stage"><div class="node">04</div><div class="sname">Earn</div><p>Card credits and per-call USDC settle to the creator's wallet, with a receipt for every call.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOVERNANCE -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap two">
+      <div>
+        <p class="kick">06 · Built for real money</p>
+        <h2>Draft is not Test. Test is not Live.</h2>
+        <p class="lede">Selling an agent means someone else depends on it. Studio is built for that from the start.</p>
+        <ul class="signals" style="margin-top:1.2rem">
+          <li>Immutable versions and explicit promotion to Live</li>
+          <li>Typed inputs and outputs, durable replay-safe runs</li>
+          <li>Per-run cost ledger and a payment receipt per call</li>
+          <li>Resource Foundry: turn your own data into a reviewed, sellable resource</li>
+        </ul>
+      </div>
+      <div><img class="shot" src="../assets/agent-studio/draft-live-control.jpg" alt="Agent Studio versioning, dry-run and promotion controls" width="1200" height="630" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+
+  <!-- POSITIONING -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap">
+      <p class="kick">07 · Where it fits</p>
+      <h2>Builders can't sell. Marketplaces can't build.</h2>
+      <table class="vs">
+        <thead><tr><th></th><th>Build visually</th><th>Launch as a paid service</th><th>Agents can pay</th></tr></thead>
+        <tbody>
+          <tr><td>Workflow builders<br><span style="font-weight:400;color:var(--faint);font-size:.85rem">Zapier · n8n · Gumloop</span></td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>Agent marketplaces<br><span style="font-weight:400;color:var(--faint);font-size:.85rem">list agents built elsewhere</span></td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+          <tr class="us"><td>Suede Agent Studio</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Studio also plugs into those marketplaces. A launched flow can be listed on them, so each one is a distribution channel.</p>
+    </div>
+  </section>
+
+  <!-- TRACTION -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap">
+      <p class="kick">08 · Traction</p>
+      <h2>Live rails, not a roadmap.</h2>
+      <div class="bignums">
+        <div class="tk"><div class="v cy">[#]</div><div class="k">flows launched on Studio <span class="tk-tag">verify</span></div></div>
+        <div class="tk"><div class="v">[#]</div><div class="k">paid calls settled <span class="tk-tag">verify</span></div></div>
+        <div class="tk"><div class="v">22</div><div class="k">x402 paid endpoints live <span class="tk-tag">verify</span></div></div>
+        <div><div class="v">23</div><div class="k">on-chain agent identities · Base</div></div>
+      </div>
+      <ul class="signals">
+        <li><span class="badge">Live</span> &nbsp;Both payment rails in production: card top-ups into a credit ledger, and per-call USDC over x402 on Base.</li>
+        <li>Suede AI Agent Studio is listed in the community-curated awesome-x402 repository.</li>
+        <li>Producer by Suede Labs runs as a hireable agent on Virtuals ACP, so launched flows can reach an existing agent marketplace.</li>
+        <li>ERC-8004 identity, reputation and validation contracts live on Base mainnet.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- BUSINESS MODEL -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap">
+      <p class="kick">09 · Business model</p>
+      <h2>Creators keep 100%. We earn on compute.</h2>
+      <div class="cards c2">
+        <div class="cell"><span class="n">Live</span><h3>Model usage margin</h3><p>Flows run models through the Suede gateway at cost plus a margin. Revenue grows with every run, paid or free.</p></div>
+        <div class="cell"><span class="n">Live</span><h3>Card credits</h3><p>Humans top up by card. Committed-use credit packs trade a discount for prepaid volume.</p></div>
+        <div class="cell"><span class="n">Lever</span><h3>Take rate on paid calls</h3><p>Currently 0% so creators keep every dollar while supply builds. It can be switched on once the marketplace has density.</p></div>
+        <div class="cell"><span class="n">Funnel</span><h3>Free tier</h3><p>100,000 free model tokens per workspace each month, then pay as you go.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIRST VERTICAL -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap two imgL">
+      <div style="text-align:center">
+        <img src="../assets/mark.png" alt="Suede mark" width="400" height="400" loading="lazy" decoding="async" style="width:min(64%,220px);filter:drop-shadow(0 14px 44px rgba(0,0,0,.55))">
+      </div>
+      <div>
+        <p class="kick">10 · First vertical</p>
+        <h2>Music and IP prove the rails.</h2>
+        <p class="lede">Suede's creator-ownership stack is the first vertical on Studio: <strong>proof of creation, an on-chain IP registry, and royalty routing</strong>, packaged as templates like "register a song and route its royalties." The same rails serve any business workflow.</p>
+        <p class="note" style="margin-top:1.2rem;font-size:.95rem;color:var(--muted)">One install for agents: <span class="cy" style="font-family:var(--mono)">pip install suede-ai</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap">
+      <p class="kick">11 · Market</p>
+      <h2>The storefront for agent-to-agent work.</h2>
+      <div class="cards c2" style="margin-top:2rem">
+        <div class="cell"><span class="n">Agentic commerce · US GMV by 2030</span><h3 style="font-family:var(--display);font-size:clamp(2rem,1rem+2.2vw,3rem);font-weight:600">$190B–$385B</h3><p>Commerce initiated and completed by agents. Every paid call on Studio is a slice of it.</p></div>
+        <div class="cell"><span class="n">GenAI content creation · by 2030</span><h3 style="font-family:var(--display);font-size:clamp(2rem,1rem+2.2vw,3rem);font-weight:600">$80B</h3><p>From $14.8B in 2024. The first vertical sits here.</p></div>
+      </div>
+      <p class="note">Sources: Morgan Stanley (2025) · Grand View Research (2024). Full citations on the final slide.</p>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap two imgL">
+      <div><img class="founder-img" style="max-height:78vh;width:auto;max-width:100%;margin:0 auto;display:block" src="../assets/founder.png" alt="Jason Colapietro, Founder and CEO of Suede Labs AI" width="1060" height="1484" loading="lazy" decoding="async"></div>
+      <div>
+        <p class="kick">12 · Founder</p>
+        <h2 style="font-size:clamp(2rem,1rem+2.6vw,3.4rem)">Jason Colapietro</h2>
+        <p class="lede" style="margin-top:.8rem"><strong>Founder &amp; CEO, Suede Labs AI.</strong> Built Agent Studio and the payment, identity and IP rails under it as a solo operator, and shipped them to production.</p>
+        <p class="pull" style="margin-top:1.4rem">"Agents shouldn't just do the work. <span class="cy" style="font-style:normal">They should get paid for it.</span>"</p>
+        <p class="note" style="margin-top:1.4rem">Author of three books, including <em>Stake Your Claim</em>, on AI ownership and creative rights.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASK -->
+  <section class="slide">
+    <img class="bgimg" src="../assets/split-bg.png" alt="" width="2880" height="1620" loading="lazy" decoding="async" style="opacity:.5">
+    <div class="scrim" style="background:linear-gradient(180deg,rgba(5,11,22,.7),rgba(5,11,22,.92))"></div>
+    <div class="wrap">
+      <p class="kick">13 · The ask</p>
+      <h2>Raising to turn a working studio into the default place agents get built and paid.</h2>
+      <p class="lede">Round size, instrument and terms are shared directly. Book an intro call below.</p>
+      <div class="cards c3" style="margin-top:1.4rem">
+        <div class="cell"><span class="n">Use of funds</span><h3>Product</h3><p>Runtime reliability, more nodes and connectors, and hosted launch at scale.</p></div>
+        <div class="cell"><span class="n">Use of funds</span><h3>Supply</h3><p>Seed creators and vertical template packs so buyers find useful flows on day one.</p></div>
+        <div class="cell"><span class="n">Use of funds</span><h3>Distribution</h3><p>Listings across agent marketplaces and MCP/A2A directories, plus developer outreach.</p></div>
+      </div>
+      <a class="cta" href="https://cal.com/johnny-suede-g12izk/investor-intro">Book an intro call →</a>
+      <p class="note">agents.suedeai.ai · info@suedeai.org · Confidential. Do not distribute.</p>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="slide">
+    <div class="tint grid"></div>
+    <div class="wrap">
+      <p class="kick">Appendix · Market citations</p>
+      <h2 style="font-size:clamp(1.5rem,1rem+1.6vw,2.2rem);max-width:none">Every market figure, sourced.</h2>
+      <table class="ledger">
+        <thead><tr><th>Market</th><th>Figure</th><th>Source · year</th></tr></thead>
+        <tbody>
+          <tr><td>Agentic commerce</td><td>$190B–$385B US GMV by 2030</td><td><span>Morgan Stanley · 2025</span></td></tr>
+          <tr><td>GenAI content creation</td><td>$14.8B (2024) → $80.12B by 2030 · 32.5% CAGR</td><td><span>Grand View Research · 2024</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">On-chain proof verifiable at app.suedeai.ai/.well-known/x402.json and on Base mainnet (ERC-8004).</p>
+    </div>
+  </section>
+
+</main>
+<script>
+(function(){
+  var deck=document.getElementById('deck'),slides=[].slice.call(deck.querySelectorAll('.slide'));
+  var cur=document.getElementById('cur'),prog=document.getElementById('prog'),n=slides.length;
+  document.getElementById('tot').textContent=String(n).padStart(2,'0');
+  var reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function idx(){var y=deck.scrollTop+innerHeight*0.4,i=0;for(var j=0;j<n;j++)if(slides[j].offsetTop<=y)i=j;return i}
+  function up(){var i=idx();cur.textContent=String(i+1).padStart(2,'0');prog.style.width=((i+1)/n*100)+'%'}
+  deck.addEventListener('scroll',function(){requestAnimationFrame(up)},{passive:true});
+  function go(d){var i=Math.max(0,Math.min(n-1,idx()+d));deck.scrollTo({top:slides[i].offsetTop,behavior:reduceMotion?'auto':'smooth'})}
+  addEventListener('keydown',function(e){
+    if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key) && document.activeElement===document.body){e.preventDefault();go(1)}
+    else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(-1)}
+    else if(e.key==='Home')deck.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'});
+    else if(e.key==='End')deck.scrollTo({top:deck.scrollHeight,behavior:reduceMotion?'auto':'smooth'});
+  });
+  up();
+})();
+</script>
+</body>
+</html>
