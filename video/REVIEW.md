@@ -22,6 +22,10 @@ Timeline (round 4): open 0 · map 7.2 · ios 17.4 · chrome 32.6 · web 44.8 · 
 4. 🟡 Title system split by owner: B scenes open with a serif headline at (120,~200); A scenes don't; chrome eyebrow sits at x=240. At minimum put chrome's eyebrow on x=120.
 5. 🟡 Shared base.css untouched: sub-18px (`.node .ds` 15, `.browser .url` 15, `.phone .sb` 14, `.pill` 17, `.fchrome` 17) and radius drift (16/18/14 vs 12). Low risk now that scenes override most of these, but the URL pills (15px) are still visible in chrome and web.
 6. ✅ Cyan discipline improved: agent em goes ink when "23" lands; web waveform playhead-only; economy curves light per stream. Remaining offender: chrome t=11 (see chrome #4).
+8. Motion scrub (30fps clips, per-frame luminance diff + object tracking; scratchpad `seg_*.mp4`):
+   - ✅ economy→finale hub glide: x 1434→960 over 92.8–93.6 with a clean in-out curve (per-frame steps 32→48→70→88→81→58→39→26→17→10→5→1.5→0 px), lands on (960,540) exactly and holds. No overshoot, no snap.
+   - ✅ web→creator: exit accelerates into 57.0 (ease-exit) and the creator entrance is smooth after; no one-frame flashes.
+   - 🟡 map→ios at global 17.43 (ios local 0.03): a one-frame step (5x the neighbouring frame diffs) in the map hub rings and a port dot near (1268,808). Something in map (or ios's first frame) snaps state on the first frame of ios instead of easing. Owner A: check what map's update does at `t > dur-0.8` vs ios `t=0` (likely a ring/port opacity keyed to a threshold).
 7. ✅ The film now tells one story: mark → spine → map with six clusters → each cluster opens (iOS, Chrome, Web) → journeys that cross them (creator, agent) → value converges on one account → the account hub becomes the constellation → tagline. The hub/spine object carries through open, map, economy and finale.
 
 ## Coverage checklist (round 4): ✅ complete

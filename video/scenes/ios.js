@@ -298,6 +298,7 @@
         });
 
         // ---------- icons: land → (featured) fly to phone labels → regroup into mini row
+        const exC = prog(t, dur - 1.4, .6, E.in);    // closing card clears before chrome arrives
         const flyB = prog(t, 6.25, 1.15, E.inOut);   // featured icons → labels
         const flyC = prog(t, 11.7, 1.1, E.inOut);    // featured icons → mini row
         order.forEach((o, i) => {
@@ -318,7 +319,7 @@
             if (pin > 0) { cx = mx; cy = MINI_Y + (1 - pin) * 18; size = MINI; op = pin; }
             else { cy += pout * 18; op *= 1 - pout; }
           }
-          placeIcon(d, cx, cy, size, op);
+          placeIcon(d, cx, cy - exC * 24, size, op * (1 - exC));
         });
 
         // ---------- B: phones fan in (6.9 → 12.2)
@@ -337,8 +338,10 @@
         });
 
         // ---------- C: closing line
-        head.set(t, 12.3, .12, .9);
-        const pa = prog(t, 12.9, .5);
+        head.set(t, 12.0, .12, .9);
+        close.style.opacity = 1 - exC;
+        close.style.transform = `translate3d(0,${-exC * 24}px,0)`;
+        const pa = prog(t, 12.5, .5);
         and.style.opacity = pa;
         and.style.transform = `translateY(${(1 - pa) * 8}px)`;
       };

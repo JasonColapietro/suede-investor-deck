@@ -6,7 +6,7 @@
 .scene-creator .hl{position:absolute;left:120px;top:168px;font-family:var(--serif);font-size:64px;line-height:1.05;letter-spacing:-.015em;white-space:nowrap}
 .scene-creator .hl em{font-style:italic;color:var(--accent)}
 .scene-creator .st{position:absolute;top:0;width:256px}
-.scene-creator .nm{position:absolute;left:0;top:344px;height:52px;width:256px;font-family:var(--serif);font-size:44px;line-height:1;letter-spacing:-.01em}
+.scene-creator .nm{position:absolute;left:0;top:344px;height:56px;overflow:hidden;width:256px;font-family:var(--serif);font-size:44px;line-height:1;letter-spacing:-.01em}
 .scene-creator .nm span{position:absolute;left:0;top:0;white-space:nowrap}
 .scene-creator .nm .on{font-style:italic;color:var(--accent)}
 .scene-creator .ix{position:absolute;left:0;top:306px;font-family:var(--mono);font-size:18px;letter-spacing:.16em;color:var(--muted)}
@@ -88,7 +88,9 @@
           o.ix.style.opacity = enter * lerp(.5, 1, arrived);
           o.off.style.opacity = enter * (1 - active) * lerp(.34, 1, visited);
           o.on.style.opacity = enter * active;
-          o.off.style.transform = o.on.style.transform = `translateY(${(1 - enter) * 20}px)`;
+          // masked swap: roman rises out as the italic rises in (no double exposure)
+          o.off.style.transform = `translateY(${(1 - enter) * 20 - active * 56}px)`;
+          o.on.style.transform = `translateY(${(1 - enter) * 20 + (1 - active) * 56}px)`;
           o.dot.style.opacity = prog(t, .6 + (sx(i) - sx(0)) / (sx(5) - sx(0)) * 1.0, .3);
           // Prove keeps a cyan diamond "stamp" once the proof has passed through it
           const st = o.stamp ? prog(t, A[4] - HOP + .15, .3) : 0;
