@@ -19,12 +19,18 @@ page.on('console', m => m.type() === 'error' && console.error('console:', m.text
 await page.goto('file://' + path.resolve('film.html'));
 await page.waitForFunction(() => window.__ready === true, null, { timeout: 30000 });
 const duration = await page.evaluate(() => window.__duration);
+const sceneId = opt('--scene', null);
+const scenes = await page.evaluate(() => window.__scenes);
+console.log('timeline', JSON.stringify(scenes), 'total', duration.toFixed(1));
 if (stills) {
-  fs.mkdirSync('frames', { recursive: true });
+  const dir = opt('--outdir', 'frames');
+  fs.mkdirSync(dir, { recursive: true });
+  const off = sceneId ? scenes.find(s => s.id === sceneId).start : 0;
   for (const t of stills.split(',').map(Number)) {
-    await page.evaluate(t => window.__seek(t), t);
-    await page.screenshot({ path: `frames/t${String(t.toFixed(1)).padStart(6, '0')}.png` });
-    console.log('still', t);
+    await page.evaluate(t => window.__seek(t), off + t);
+    const f = `${dir}/${sceneId ? sceneId + '_' : ''}t${t.toFixed(1).padStart(5, '0')}.png`;
+    await page.screenshot({ path: f });
+    console.log('still', f);
   }
   await browser.close(); process.exit(0);
 }
