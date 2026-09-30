@@ -27,7 +27,8 @@ if (stills) {
   fs.mkdirSync(dir, { recursive: true });
   const off = sceneId ? scenes.find(s => s.id === sceneId).start : 0;
   for (const t of stills.split(',').map(Number)) {
-    await page.evaluate(t => window.__seek(t), off + t);
+    // --scene: local film time within that scene; otherwise output time
+    await page.evaluate(([t, f]) => f ? window.__seekFilm(t) : window.__seek(t), [off + t, !!sceneId]);
     const f = `${dir}/${sceneId ? sceneId + '_' : ''}t${t.toFixed(1).padStart(5, '0')}.png`;
     await page.screenshot({ path: f });
     console.log('still', f);

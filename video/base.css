@@ -81,3 +81,5 @@ body{color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased
 .fchrome .chap{position:absolute;top:52px;right:var(--safe);height:30px;line-height:30px;font-family:var(--mono);font-size:18px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .fchrome .chap b{color:var(--accent);font-weight:500}
 .fchrome .prog{position:absolute;left:0;top:0;height:3px;width:100%;background:var(--accent);transform-origin:0 50%;box-shadow:0 0 12px var(--accent-glow)}
+.lightsweep{position:absolute;inset:0;z-index:45;pointer-events:none;mix-blend-mode:screen;opacity:0}
+.scene{transform-origin:50% 50%}

@@ -1,8 +1,20 @@
 # Suede Ecosystem Film — Storyboard & Source of Truth
 
-1920×1080, 30fps, ~115s. Brand: Suede AI Navy + Cyan (see `base.css`; full motion brief in the design brief).
+1920×1080, 30fps, 1:28 (bar-locked at 120 BPM). Brand: Suede AI Navy + Cyan (see `base.css`; full motion brief in the design brief).
 Every on-screen fact below was verified against live Suede sites / App Store / Chrome Web Store on 2026-09-30.
 **Do not put anything on screen that is not in this file.**
+
+## Deliverables & how to rebuild
+| File | Format | Built by |
+|---|---|---|
+| `suede-ecosystem.mp4` | 1:28 · 1920×1080 · 30fps | `python3 score.py full` → `node render2.mjs` |
+| `suede-ecosystem-30s.mp4` | 0:30 · 1920×1080 | `python3 score.py social` → `python3 cut_social.py <graded master> <out>` |
+| `suede-ecosystem-vertical.mp4` | 0:30 · 1080×1920 | `node overlay_render.mjs <overlay.mov>` → `python3 cut_vertical.py <30s cut> <overlay.mov> <out>` |
+
+Needs `pip install imageio-ffmpeg numpy scipy pyloudnorm`. `render2.mjs` renders with 4 parallel workers and a 2-sample
+(180°) motion blur, then grades (bloom, contrast, vignette, grain). For the social cuts, re-run its final grade step
+at a high quality setting to keep a graded master to cut from. Cut timing: `WARP` in `scenes/_order.js` maps each scene
+start onto a 2s bar; chunk lists live in `cut_social.py` and `cut_vertical.py`. `render.mjs --stills` is for quick stills.
 
 ## Verified surfaces
 
