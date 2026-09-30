@@ -1,4 +1,4 @@
-# Suede Labs AI — Investor Brief
+# Suede AI — Investor Brief
 
 > **By [Jason Colapietro](https://suedeai.ai/founder), Founder & CEO · [suedeai.ai](https://suedeai.ai) · [suedeai.org](https://suedeai.org)**
 
