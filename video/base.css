@@ -1,0 +1,83 @@
+@import url('fonts/fonts.css');
+:root{
+  --ground:#0c1127; --ground-deep:#080c1d; --lift:#12234f; --surface:#161f3c; --surface-2:#1b2649;
+  --hairline:#2a3354; --hairline-2:#3a4670;
+  --ink:#ffffff; --body:#b4bcd6; --muted:#8a94b8;
+  --accent:#06cfef; --accent-soft:rgba(6,207,239,.12); --accent-glow:rgba(6,207,239,.35);
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --safe:120px; /* title-safe margin at 1080p */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--ground-deep)}
+body{color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+#stage{position:absolute;inset:0;overflow:hidden;
+  background:radial-gradient(110% 80% at 100% 0%,var(--lift) 0%,var(--ground) 55%,var(--ground-deep) 100%)}
+#stage::after{content:"";position:absolute;inset:0;z-index:50;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.scene{position:absolute;inset:0;will-change:opacity,transform}
+.scene svg{overflow:visible}
+
+/* ---------- type ---------- */
+.eyebrow{font-family:var(--mono);font-size:20px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
+  display:flex;align-items:center;gap:18px}
+.eyebrow .ix{color:var(--muted)}
+.eyebrow::after{content:"";flex:0 0 64px;height:1px;background:linear-gradient(90deg,var(--accent),transparent)}
+.h1{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;line-height:.98;font-size:132px}
+.h2{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;line-height:1.02;font-size:88px}
+.h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.05;font-size:56px}
+.h1 em,.h2 em,.h3 em{font-style:italic;color:var(--accent)}
+.lede{color:var(--body);font-size:32px;line-height:1.45;font-weight:400;max-width:34ch}
+.lede strong{color:var(--ink);font-weight:600}
+.label{font-family:var(--mono);font-size:18px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono)}
+.cy{color:var(--accent)}
+.line-mask{display:block;overflow:hidden;padding-bottom:.08em}
+.line-mask>span{display:inline-block}
+
+/* ---------- surface node card ---------- */
+.node{position:absolute;display:flex;align-items:center;gap:16px;padding:16px 22px 16px 16px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(27,38,73,.92),rgba(22,31,60,.92));border:1px solid var(--hairline-2);
+  box-shadow:0 18px 50px -20px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05);white-space:nowrap}
+.node .ic{width:52px;height:52px;border-radius:13px;flex:none;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:18px;
+  color:var(--ground);background:var(--accent)}
+.node .nm{font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-.005em}
+.node .ds{font-family:var(--mono);font-size:15px;letter-spacing:.06em;color:var(--muted);margin-top:4px;text-transform:uppercase}
+.node.lit{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 0 40px -6px var(--accent-glow),0 18px 50px -20px rgba(0,0,0,.6)}
+
+/* ---------- iPhone (pure CSS) ---------- */
+.phone{position:absolute;width:300px;height:620px;border-radius:52px;padding:11px;
+  background:linear-gradient(145deg,#3a4670,#1b2649 40%,#0c1127);
+  box-shadow:0 0 0 1.5px #4a5680,0 40px 90px -30px rgba(0,0,0,.8),0 0 80px -40px var(--accent-glow)}
+.phone .scr{position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:var(--ground-deep)}
+.phone .island{position:absolute;top:12px;left:50%;width:96px;height:28px;margin-left:-48px;border-radius:16px;background:#000;z-index:5}
+.phone .sb{position:absolute;top:16px;left:28px;right:24px;display:flex;justify-content:space-between;font-size:14px;font-weight:600;color:#fff;z-index:4}
+.phone .home{position:absolute;bottom:8px;left:50%;width:110px;height:5px;margin-left:-55px;border-radius:3px;background:rgba(255,255,255,.55);z-index:5}
+
+/* ---------- Chrome window ---------- */
+.browser{position:absolute;border-radius:14px;overflow:hidden;background:#0e1430;border:1px solid var(--hairline-2);
+  box-shadow:0 40px 100px -30px rgba(0,0,0,.8)}
+.browser .tb{height:52px;display:flex;align-items:center;gap:14px;padding:0 16px;background:#161f3c;border-bottom:1px solid var(--hairline)}
+.browser .dots{display:flex;gap:8px}.browser .dots i{width:12px;height:12px;border-radius:50%;background:#3a4670}
+.browser .url{flex:1;height:32px;border-radius:16px;background:#0c1127;border:1px solid var(--hairline);display:flex;align-items:center;padding:0 16px;
+  font-family:var(--mono);font-size:15px;color:var(--body)}
+.browser .ext{width:32px;height:32px;border-radius:8px;display:grid;place-items:center}
+.browser .ext.on{background:var(--accent-soft);box-shadow:0 0 0 1px var(--accent)}
+.popup{position:absolute;width:360px;border-radius:14px;background:#161f3c;border:1px solid var(--hairline-2);
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.8),0 0 0 1px rgba(6,207,239,.12);padding:20px}
+
+/* ---------- chips / pills ---------- */
+.pill{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;border:1px solid var(--hairline-2);
+  font-family:var(--mono);font-size:17px;letter-spacing:.08em;text-transform:uppercase;color:var(--body);background:rgba(12,17,39,.6)}
+.pill b{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.card{border-radius:18px;background:linear-gradient(180deg,var(--surface-2),var(--surface));border:1px solid var(--hairline)}
+
+/* ---------- persistent chrome ---------- */
+.fchrome{position:absolute;inset:0;z-index:40;pointer-events:none}
+.fchrome .brand{position:absolute;top:52px;left:var(--safe);display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:17px;font-weight:500;letter-spacing:.18em}
+.fchrome .brand img{width:30px;height:30px}
+.fchrome .brand .dim{color:var(--muted)}
+.fchrome .chap{position:absolute;top:52px;right:var(--safe);font-family:var(--mono);font-size:17px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.fchrome .chap b{color:var(--accent);font-weight:500}
+.fchrome .prog{position:absolute;left:0;top:0;height:3px;width:100%;background:var(--accent);transform-origin:0 50%;box-shadow:0 0 12px var(--accent-glow)}
