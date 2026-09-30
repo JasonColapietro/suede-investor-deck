@@ -538,7 +538,7 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
       <p class="eyebrow rv"><span class="ix">07</span> Traction</p>
       <h2 class="rv" style="--d:1">Real, on‑chain, <em>shipped.</em></h2>
       <div class="nums rv" style="--d:2">
-        <div><div class="v" data-count="22">22</div><div class="k">x402 paid endpoints</div></div>
+        <div><div class="v" data-count="40" data-suffix="+">40+</div><div class="k">x402 paid endpoints</div></div>
         <div><div class="v" data-count="3">3</div><div class="k">ERC-8004 contracts · Base mainnet</div></div>
         <div><div class="v" data-count="23">23</div><div class="k">On-chain agent identities</div></div>
         <div><div class="v" data-count="4">4</div><div class="k">iOS apps shipped</div></div>
@@ -607,7 +607,7 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
       <p class="eyebrow rv"><span class="ix">09</span> Business model</p>
       <h2 class="rv" style="--d:1">Multiple rails. <em>Several already in production.</em></h2>
       <div class="grid-cards g2 model">
-        <div class="card rv" style="--d:2"><span class="status on">Live</span><h3>Agent commerce (x402)</h3><p>Per-call USDC pricing across 22 endpoints; no-account agent payments.</p></div>
+        <div class="card rv" style="--d:2"><span class="status on">Live</span><h3>Agent commerce (x402)</h3><p>Per-call USDC pricing across 40+ paid endpoints; no-account agent payments.</p></div>
         <div class="card rv" style="--d:3"><span class="status on">Live</span><h3>Credits &amp; subscription</h3><p>Creator-side generation &amp; workflow access via credits / plans.</p></div>
         <div class="card rv" style="--d:4"><span class="status off">Rail</span><h3>Vault / royalty take-rate</h3><p>Participation &amp; settlement fees on royalty and ownership flows.</p></div>
         <div class="card rv" style="--d:5"><span class="status off">Rail</span><h3>Registry &amp; licensing</h3><p>Proof-of-creation, licensing templates &amp; verification fees.</p></div>
@@ -709,9 +709,9 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
   });
 
   // count-up numbers
-  function count(el){var end=+el.getAttribute('data-count');if(reduceMotion){el.textContent=end;return}
+  function count(el){var end=+el.getAttribute('data-count'),sfx=el.getAttribute('data-suffix')||'';if(reduceMotion){el.textContent=end+sfx;return}
     var t0=null,dur=1400;el.textContent='0';
-    function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);el.textContent=Math.round(end*e);if(p<1)requestAnimationFrame(step)}
+    function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);el.textContent=Math.round(end*e)+(p<1?'':sfx);if(p<1)requestAnimationFrame(step)}
     requestAnimationFrame(step);}
 
   // reveal on enter
