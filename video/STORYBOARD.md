@@ -39,7 +39,7 @@ Every on-screen fact below was verified against live Suede sites / App Store / C
 - SDKs: `pip install suede-ai` · `@suedeai/mcp-server` · `@suedeai/agents` (`suede` CLI) · `@suedeai/plugin-suede` (ElizaOS)
 - Stripe Agentic Commerce manifest (credits for humans & agents)
 - **ERC-8004 on Base**: Identity · Reputation · Validation registries — **23 agent identities**
-- **Producer by Suede Labs** — hireable agent on Virtuals ACP
+- **Producer by Suede AI** — hireable agent on Virtuals ACP
 
 **Economy & community**: Stripe credits & plans · **$SUEDE** (Solana) holder rewards at app.suedeai.ai/rewards · Telegram t.me/suedeai · X @AISUEDE
 **Partners (logos in ../assets/partners)**: Base · Stripe · Chainlink · LayerZero · Virtuals · AgentCash · Google Cloud · ChainGPT

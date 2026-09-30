@@ -63,7 +63,7 @@
     ['Agent Studio', 'agents.suedeai.ai'],
     ['x402 endpoint', 'pay-per-call · USDC on Base'],
     ['ERC-8004 Identity', 'Reputation · Validation'],
-    ['Producer by Suede Labs', 'Hireable on Virtuals ACP'],
+    ['Producer by Suede AI', 'Hireable on Virtuals ACP'],
   ];
   Film.scene({
     id: 'agent', dur: 15, chapter: ['06', 'Agent flow'],
