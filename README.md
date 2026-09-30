@@ -1,7 +1,7 @@
 # Suede AI — Investor Brief
 
+**Live deck: [jasoncolapietro.github.io/suede-investor-deck](https://jasoncolapietro.github.io/suede-investor-deck/)**
+
 > **By [Jason Colapietro](https://suedeai.ai/founder), Founder & CEO · [suedeai.ai](https://suedeai.ai) · [suedeai.org](https://suedeai.org)**
 
-Creator ownership infrastructure for the AI media era: proof of creation, programmable IP, rights metadata, royalty routing, and agent commerce (x402 / ERC-8004).
-
-[View the live deck →](https://jasoncolapietro.github.io/suede-investor-deck/)
+Creator ownership infrastructure for the AI media era: proof of creation, programmable IP, rights metadata, and agent commerce (x402 / ERC-8004), with royalty routing in build.
