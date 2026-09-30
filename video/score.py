@@ -20,12 +20,22 @@ SR = 48000
 BPM = 120
 BEAT = 60 / BPM
 BAR = 4 * BEAT
-TOTAL = 88.0
+import sys
+# Arrangements: 'full' (the 1:28 film) and 'social' (the 30s cut). Times are seconds.
+CFG = {
+    'full': dict(TOTAL=88.0, DROP=6.0, CLAPS=14, OPENHAT=26, DENSE=(56, 68), MIDRISER=68, BUILD=74,
+                 FINALE=76.0, ENDCARD=82.0, ARP_START=2.0, CUTS=[26, 36, 46, 56, 68], OUT='score.wav'),
+    'social': dict(TOTAL=30.0, DROP=4.0, CLAPS=6, OPENHAT=10, DENSE=(14, 20), MIDRISER=None, BUILD=20,
+                   FINALE=22.0, ENDCARD=26.0, ARP_START=.5, CUTS=[10, 14, 18], OUT='score_social.wav'),
+}
+P = CFG[sys.argv[1] if len(sys.argv) > 1 else 'full']
+TOTAL = P['TOTAL']
 N = int(TOTAL * SR)
 rng = np.random.default_rng(20260930)
 
-CUTS = [26, 36, 46, 56, 68]           # zoom/sweep cuts (whooshes)
-DROP, FINALE, ENDCARD = 6.0, 76.0, 82.0
+CUTS = P['CUTS']                       # zoom/sweep cuts (whooshes)
+DROP, FINALE, ENDCARD, BUILD = P['DROP'], P['FINALE'], P['ENDCARD'], P['BUILD']
+D0, D1 = P['DENSE']
 
 def midi(m): return 440.0 * 2 ** ((m - 69) / 12)
 def zeros(): return np.zeros((N, 2))
@@ -161,48 +171,50 @@ for b in range(NBARS):
     for s16 in range(16):
         t = t0 + s16 * BEAT / 4
         beat_on = s16 % 4 == 0
-        drums_on = DROP <= t < 74 or FINALE <= t < ENDCARD
+        drums_on = DROP <= t < BUILD or FINALE <= t < ENDCARD
         # kick 4 on the floor
         if drums_on and beat_on:
             add(drums, t, kick()); kicks.append(t)
         # claps on 2 & 4
-        if drums_on and t >= 14 and s16 in (4, 12):
+        if drums_on and t >= P['CLAPS'] and s16 in (4, 12):
             c = clap(); add(drums, t, c, .08); add(verb_send, t, c, .08, .35)
         # hats: 8ths from 14, 16ths in agent + finale; open hat on the "and"
-        if drums_on and t >= 14:
-            dense = 56 <= t < 68 or t >= FINALE
+        if drums_on and t >= P['CLAPS']:
+            dense = D0 <= t < D1 or t >= FINALE
             if s16 % 2 == 0 or dense:
                 add(drums, t, hat(), .35 if s16 % 4 else -.25, 1.0 if s16 % 2 == 0 else .55)
-            if t >= 26 and s16 % 4 == 2:
+            if t >= P['OPENHAT'] and s16 % 4 == 2:
                 add(drums, t, hat(True), -.3, .6)
         # bass: driving 8ths
-        if (DROP <= t < 74 or FINALE <= t < ENDCARD) and s16 % 2 == 0:
-            up = .8 if (56 <= t < 68 or t >= FINALE) and s16 % 4 == 2 else 0
+        if (DROP <= t < BUILD or FINALE <= t < ENDCARD) and s16 % 2 == 0:
+            up = .8 if (D0 <= t < D1 or t >= FINALE) and s16 % 4 == 2 else 0
             add(bass, t, bass_note(root, BEAT / 2 - .01, up))
         # pluck arp: 16ths from 2s (filtered in the intro), full from the drop
-        if 2.0 <= t < ENDCARD:
+        if P['ARP_START'] <= t < ENDCARD:
             seq = [0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 4, 3, 1]
             pool = sorted(tones + [x + 12 for x in tones])
             m = pool[seq[s16] % len(pool)]
-            bright = 1.8 if 56 <= t < 68 or t >= FINALE else 1.0
+            bright = 1.8 if D0 <= t < D1 or t >= FINALE else 1.0
             pk = pluck(m, bright=bright)
-            if t < DROP: pk = filt(pk, 'lowpass', 500 + 2500 * (t - 2) / 4) * ((t - 2) / 4) ** 1.5
+            if t < DROP:
+                w = (t - P['ARP_START']) / (DROP - P['ARP_START'])
+                pk = filt(pk, 'lowpass', 500 + 2500 * w) * w ** 1.5
             add(music, t, pk, .45 if s16 % 2 else -.45, .9)
             add(verb_send, t, pk, 0, .25)
 
 # snare roll 74 -> 76, accelerating and crescendo
-t = 74.0; step = BEAT / 2
+t = BUILD; step = BEAT / 2
 while t < FINALE - 1e-6:
-    v = .35 + .65 * (t - 74) / 2
+    v = .35 + .65 * (t - BUILD) / (FINALE - BUILD)
     add(drums, t, snare(v), 0); add(verb_send, t, snare(v), 0, .2)
-    if t >= 75.0: step = BEAT / 4
-    if t >= 75.5: step = BEAT / 8
+    if t >= FINALE - 1.0: step = BEAT / 4
+    if t >= FINALE - .5: step = BEAT / 8
     t += step
 
 # risers, whooshes, impacts, bells
-r = riser(3.0); add(fx, DROP - 3.0, r, gain=.7)
-r = riser(1.8, 7000); add(fx, 68 - 1.8, r, gain=.35)
-r = riser(4.0, 12000); add(fx, FINALE - 4.0, r, gain=.85)
+rd = min(3.0, DROP - .2); r = riser(rd); add(fx, DROP - rd, r, gain=.7)
+if P['MIDRISER']: r = riser(1.8, 7000); add(fx, P['MIDRISER'] - 1.8, r, gain=.35)
+rf = min(4.0, FINALE - BUILD + 2); r = riser(rf, 12000); add(fx, FINALE - rf, r, gain=.85)
 for c in CUTS:
     w = whoosh(); add(fx, c - .45 * 1.3 + .15, w, gain=.7)
 for when, sc in ((DROP, .9), (FINALE, 1.0), (ENDCARD, 1.0)):
@@ -241,8 +253,8 @@ wet = np.stack([signal.fftconvolve(verb_send[:, c], ir[:, c])[:N] for c in range
 wet = filt(wet, 'highpass', 220)
 
 # bus levels + gentle section automation
-music_lvl = auto([(0, .6), (5.9, .8), (6, .95), (56, 1.0), (68, 1.05), (76, 1.2), (82, 1.1), (88, 1.1)])
-drum_lvl = auto([(0, .8), (14, .82), (26, .88), (56, .95), (68, 1.0), (76, 1.08), (82, 1.0), (88, 1.0)])
+music_lvl = auto([(0, .6), (DROP - .1, .8), (DROP, .95), (D0, 1.0), (D1, 1.05), (FINALE, 1.2), (ENDCARD, 1.1), (TOTAL, 1.1)])
+drum_lvl = auto([(0, .8), (P['CLAPS'], .82), (P['OPENHAT'], .88), (D0, .95), (D1, 1.0), (FINALE, 1.08), (ENDCARD, 1.0), (TOTAL, 1.0)])
 mix = drums * drum_lvl[:, None] + filt(bass, 'highpass', 38) * .72 + music * (1.45 * music_lvl)[:, None] + fx * .8 + wet * .6
 # master EQ: clean the sub rumble, a little presence and air
 mix = filt(mix, 'highpass', 30, 2)
@@ -264,10 +276,10 @@ mix = pyln.normalize.loudness(mix, meter.integrated_loudness(mix), -14.0)
 ceil = 10 ** (-1 / 20)
 mix = ceil * np.tanh(mix / ceil)
 print('LUFS', round(meter.integrated_loudness(mix), 2), 'peak dBFS', round(20 * np.log10(np.abs(mix).max()), 2))
-for a, b, name in ((0, 6, 'intro'), (6, 26, 'groove'), (56, 68, 'agent'), (72, 76, 'build'), (76, 82, 'finale'), (82, 88, 'endcard')):
+for a, b, name in ((0, DROP, 'intro'), (DROP, D0, 'groove'), (D0, D1, 'dense'), (BUILD, FINALE, 'build'), (FINALE, ENDCARD, 'finale'), (ENDCARD, TOTAL, 'endcard')):
     seg = mix[int(a * SR):int(b * SR)]
     print(f'  {name:8s} {a:>4}-{b:<4} LUFS {meter.integrated_loudness(seg):6.1f}')
 pcm = (np.clip(mix, -1, 1) * 32767).astype('<i2')
-with wave.open('score.wav', 'wb') as w:
+with wave.open(P['OUT'], 'wb') as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(pcm.tobytes())
-print('wrote score.wav', TOTAL, 's')
+print('wrote', P['OUT'], TOTAL, 's')
