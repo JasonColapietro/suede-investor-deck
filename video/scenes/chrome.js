@@ -188,7 +188,7 @@
       // ---------- page B
       const B = el('div', 'vp pb', br.body);
       el('div', 'nav', B, `${MARK}<span>SUEDE AI</span>`);
-      el('div', 'hero', B, 'The ownership layer<br>for the <em>AI media era.</em>');
+      el('div', 'hero', B, 'Creator ownership<br><em>infrastructure.</em>');
       [[56, 348, 520, 16], [56, 378, 440, 16], [56, 438, 190, 52], [262, 438, 190, 52, 'd'],
         [56, 540, 280, 120, 'd'], [352, 540, 280, 120, 'd'], [648, 540, 280, 120, 'd']].forEach(([x, y, w, h, d]) => {
         const s = el('div', 'sk' + (d ? ' d' : ''), B); Object.assign(s.style, { left: x + 'px', top: y + 'px', width: w + 'px', height: h + 'px' });
@@ -240,7 +240,7 @@
         B.style.visibility = pw > 0 ? 'visible' : 'hidden';
         wipe.style.left = X + 'px';
         wipe.style.opacity = pw > 0 && pw < 1 ? 1 : 0;
-        urlText.textContent = pw < .5 ? 'youtube.com/watch' : 'suedeai.ai';
+        urlText.textContent = pw < .02 ? 'youtube.com/watch' : 'suedeai.ai';
         extSing.classList.toggle('on', t > 1.3 && pw < .5);
         br.ext.classList.toggle('on', t > 6.95);
 

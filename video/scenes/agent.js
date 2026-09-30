@@ -133,7 +133,7 @@
         h2em.style.color = `rgb(${lerp(6, 255, settle)},${lerp(207, 255, settle)},${lerp(239, 255, settle)})`;
 
         // terminal enter
-        const tp = prog(t, .35, 1.0, E.out);
+        const tp = prog(t, .7, 1.0, E.out);
         const tb = prog(t, B2, .6, E.inOut);
         term.style.opacity = tp * lerp(1, .22, tb);
         term.style.transform = `translateY(${(1 - tp) * 30}px) scale(${1 - .04 * tb})`;
