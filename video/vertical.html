@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Suede Vertical Overlay</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--ground:#0c1127;--deep:#080c1d;--lift:#12234f;--ink:#fff;--body:#b4bcd6;--muted:#8a94b8;--accent:#06cfef;--hair:#2a3354;
+  --serif:'DM Serif Display',Georgia,serif;--mono:'IBM Plex Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent}
+body{color:var(--ink);-webkit-font-smoothing:antialiased}
+/* bands: opaque navy; the 1080x1080 window (y 420..1500) stays transparent for the video */
+.top,.bot{position:absolute;left:0;right:0;overflow:hidden}
+.top{top:0;height:420px;background:radial-gradient(120% 140% at 100% 0%,var(--lift) 0%,var(--ground) 55%,var(--deep) 100%)}
+.bot{top:1500px;height:420px;background:radial-gradient(120% 140% at 0% 100%,var(--lift) 0%,var(--ground) 55%,var(--deep) 100%)}
+.fadeT,.fadeB{position:absolute;left:0;right:0;height:70px}
+.fadeT{top:420px;background:linear-gradient(180deg,#0b1026,rgba(11,16,38,0))}
+.fadeB{top:1430px;background:linear-gradient(0deg,#0b1026,rgba(11,16,38,0))}
+.eyebrow{position:absolute;left:84px;top:96px;font-family:var(--mono);font-size:24px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;gap:18px;align-items:center}
+.eyebrow b{color:var(--accent);font-weight:500}
+.eyebrow::after{content:"";width:72px;height:1px;background:linear-gradient(90deg,var(--accent),transparent)}
+.cap{position:absolute;left:84px;right:84px;top:158px;font-family:var(--serif);font-size:92px;line-height:1.0;letter-spacing:-.015em}
+.cap .l{display:block;overflow:hidden;padding-bottom:.1em}
+.cap .l>span{display:inline-block}
+.cap em{font-style:italic;color:var(--accent)}
+.lock{position:absolute;left:84px;top:1690px;display:flex;align-items:center;gap:18px;font-family:var(--mono);font-size:26px;font-weight:500;letter-spacing:.2em}
+.lock img{width:44px;height:44px}
+.lock .dim{color:var(--muted)}
+.cta{position:absolute;right:84px;top:1676px;height:72px;padding:0 34px;border-radius:36px;border:1px solid var(--accent);display:flex;align-items:center;
+  font-family:var(--mono);font-size:28px;letter-spacing:.08em;color:var(--ink);box-shadow:0 0 40px -8px rgba(6,207,239,.5),inset 0 0 20px rgba(6,207,239,.08)}
+.prog{position:absolute;left:84px;right:84px;top:1580px;height:3px;background:var(--hair);border-radius:2px;overflow:hidden}
+.prog i{position:absolute;inset:0;background:var(--accent);transform-origin:0 50%;box-shadow:0 0 12px rgba(6,207,239,.6)}
+.ticks{position:absolute;left:84px;right:84px;top:1596px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:20px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+</style></head>
+<body>
+<div class="top"><div class="eyebrow" id="eb"></div><div class="cap" id="cap"></div></div>
+<div class="fadeT"></div><div class="fadeB"></div>
+<div class="bot">
+</div>
+<div class="prog" style="top:1540px"><i id="bar"></i></div>
+<div class="ticks" style="top:1560px"><span id="tl"></span><span>Suede AI · Ecosystem</span></div>
+<div class="lock" style="top:1700px"><img src="../assets/mark.svg"><span>SUEDE AI</span></div>
+<div class="cta" id="cta" style="top:1686px">suedeai.ai</div>
+<script>
+// chunk timeline (social seconds). Captions are verified facts from STORYBOARD.md.
+const C = [
+  [0, 4, 'Ecosystem', null],
+  [4, 6, 'The map', 'Web · iOS · Chrome|<em>agents · on-chain.</em>'],
+  [6, 8, 'iOS', '9 iOS apps.|<em>+3 on Android.</em>'],
+  [8, 10, 'iOS', 'Studio tools|<em>in your pocket.</em>'],
+  [10, 12, 'Chrome', 'Suede Sing|<em>for Chrome.</em>'],
+  [12, 14, 'Chrome', 'Suede Lens.|<em>Page Passports.</em>'],
+  [14, 16, 'Web', 'Create it.|<em>Prove it.</em>'],
+  [16, 18, 'Creator flow', 'First chord|<em>to release.</em>'],
+  [18, 20, 'Agents', 'Agents|<em>pay per call.</em>'],
+  [20, 22, 'Value', 'Every stream,|<em>one account.</em>'],
+  [22, 26, 'Everything', 'Every surface.|<em>One spine.</em>'],
+  [26, 30, 'suedeai.ai', null],
+];
+const T = 30;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const out = x => 1 - Math.pow(1 - clamp(x), 4);
+const cap = document.getElementById('cap'), eb = document.getElementById('eb'), bar = document.getElementById('bar'), tl = document.getElementById('tl'), cta = document.getElementById('cta');
+let cur = -1, spans = [];
+window.__duration = T;
+window.__seek = (t) => {
+  const k = C.findIndex(c => t >= c[0] && t < c[1]); const i = k < 0 ? C.length - 1 : k;
+  if (i !== cur) {
+    cur = i; const c = C[i];
+    eb.innerHTML = `<b>${String(i + 1).padStart(2, '0')}</b><span>${c[2]}</span>`;
+    cap.innerHTML = c[3] ? c[3].split('|').map(l => `<span class="l"><span>${l}</span></span>`).join('') : '';
+    spans = [...cap.querySelectorAll('.l>span')];
+  }
+  const lt = t - C[i][0];
+  spans.forEach((s, j) => { const p = out((lt - .05 - j * .09) / .45); s.style.transform = `translate3d(0,${(1 - p) * 105}%,0)`; s.style.opacity = clamp(p * 1.5); });
+  const pe = out((lt - .02) / .35); eb.style.opacity = pe; eb.style.transform = `translate3d(${(1 - pe) * -16}px,0,0)`;
+  bar.style.transform = `scaleX(${clamp(t / T)})`;
+  tl.textContent = `${String(i + 1).padStart(2, '0')} / ${C.length}`;
+  // CTA glows up on the end card
+  const g = clamp((t - 26) / .6); cta.style.background = `rgba(6,207,239,${.0 + .9 * g})`; cta.style.color = g > .5 ? '#0c1127' : '#fff';
+  // everything fades at the very end with the video
+  document.body.style.opacity = 1 - clamp((t - 29.4) / .6) * .0;
+};
+window.addEventListener('load', async () => { await document.fonts.ready; await Promise.all([...document.images].map(i => i.decode().catch(() => {}))); window.__seek(0); window.__ready = true; });
+</script>
+</body></html>

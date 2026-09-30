@@ -2,3 +2,4 @@ video/frames/
 video/audio.wav
 video/score.wav
 video/score_social.wav
+video/__pycache__/

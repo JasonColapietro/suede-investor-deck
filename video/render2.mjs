@@ -70,11 +70,11 @@ fs.writeFileSync(list, segs.filter(Boolean).map(s => `file '${s}'`).join('\n'));
 const grade = has('--nograde') ? 'format=yuv420p' :
   "format=gbrp,split[a][b];[b]colorlevels=rimin=0.5:gimin=0.5:bimin=0.5,gblur=sigma=26[g];" +
   "[a][g]blend=all_mode=screen:all_opacity=0.30,eq=contrast=1.04:saturation=1.08:gamma=1.0," +
-  "vignette=a=0.30,noise=alls=4:allf=t,format=yuv420p";
+  "vignette=a=0.30,noise=alls=2:allf=t,format=yuv420p";
 const audio = fs.existsSync('score.wav') && !has('--noaudio');
 const offset = +opt('--from', 0);
 execSync([ffmpeg, '-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', list,
   ...(audio ? ['-ss', String(offset), '-i', 'score.wav'] : []),
   '-filter_complex', `[0:v]${grade}[v]`, '-map', '[v]', ...(audio ? ['-map', '1:a', '-c:a', 'aac', '-b:a', '256k', '-shortest'] : []),
-  '-c:v', 'libx264', '-preset', 'slow', '-crf', '15', '-tune', 'film', '-movflags', '+faststart', out].map(a => `"${a}"`).join(' '), { stdio: 'inherit' });
+  '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-maxrate', '8M', '-bufsize', '16M', '-tune', 'film', '-movflags', '+faststart', out].map(a => `"${a}"`).join(' '), { stdio: 'inherit' });
 console.log('wrote', out);
