@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Suede Ecosystem Film</title>
+<link rel="stylesheet" href="base.css">
+<script src="engine.js"></script>
+<script src="components.js"></script>
+<script src="chrome.js"></script>
+<!-- scenes: order is set in SCENE_ORDER below -->
+<script src="scenes/_order.js"></script>
+</head><body><div id="stage"></div>
+<script>for (const id of window.SCENE_ORDER) document.write(`<script src="scenes/${id}.js"><\/script>`);</script>
+</body></html>
