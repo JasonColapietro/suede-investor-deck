@@ -8,7 +8,9 @@
 <meta name="keywords" content="Suede Labs AI, investor brief, programmable IP, creator ownership, AI media, on-chain royalties, x402, ERC-8004, Base mainnet, agent commerce, rights layer, creator economy, Jason Colapietro, startup pitch deck">
 <meta name="author" content="Jason Colapietro">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="theme-color" content="#0c1127">
 <link rel="canonical" href="https://jasoncolapietro.github.io/suede-investor-deck/">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
 <link rel="icon" href="assets/mark.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/mark.png">
 
@@ -34,388 +36,642 @@
 <meta name="twitter:image:alt" content="Suede Labs AI — The ownership layer for the AI media era">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@18..72,400;18..72,500;18..72,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
+/* Suede AI · Navy + Cyan, adapted for a web deck */
 :root{
-  --ink:#050b16; --panel:#0a121f; --control:#0e1828;
-  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.18);
-  --cyan:#22d3ee; --red:#c8141f; --red2:#ff5a63; --emerald:#34d399; --sky:#38bdf8;
-  --text:#f3f6fb; --muted:rgba(243,246,251,.66); --faint:rgba(243,246,251,.55);
-  --sans:'Geist',system-ui,sans-serif; --mono:'Geist Mono',ui-monospace,monospace; --serif:'Instrument Serif',Georgia,serif;
-  --display:'Newsreader',Georgia,serif;
-  --pad:clamp(2.4rem,1.6rem+3vw,5rem);
+  --ground:#0c1127; --ground-deep:#080c1d; --lift:#12234f; --surface:#161f3c; --surface-2:#1b2649;
+  --hairline:#2a3354; --hairline-2:#3a4670;
+  --ink:#ffffff; --body:#b4bcd6; --muted:#8a94b8;
+  --accent:#06cfef; --accent-soft:rgba(6,207,239,.12); --accent-glow:rgba(6,207,239,.35);
+  --fill:#ffffff; --on-fill:#0c1127;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --pad:clamp(1.25rem,.6rem + 3.4vw,5rem);
+  --ease:cubic-bezier(.2,.7,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--ink);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact}
-.deck{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+html,body{background:var(--ground-deep)}
+body{color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;overflow:hidden}
+::selection{background:var(--accent);color:var(--on-fill)}
+a{color:inherit}
+.deck{height:100vh;height:100dvh;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;scroll-behavior:smooth}
 .deck::-webkit-scrollbar{width:0}
-.slide{position:relative;min-height:100vh;width:100%;scroll-snap-align:start;display:flex;flex-direction:column;
-  justify-content:center;padding:var(--pad);overflow:hidden;border-bottom:1px solid rgba(255,255,255,.04)}
-.wrap{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto}
-.kick{font-family:var(--mono);font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);
-  margin-bottom:1.1rem;display:flex;align-items:center;gap:.7rem}
-.kick::before{content:"";width:1.6rem;height:1px;background:var(--cyan)}
-h1{font-family:var(--display);font-weight:600;letter-spacing:-.015em;line-height:1.0;font-size:clamp(2.8rem,1rem+6vw,6.4rem)}
-h2{font-family:var(--display);font-weight:500;letter-spacing:-.005em;line-height:1.07;font-size:clamp(2.2rem,1.1rem+3.4vw,4.3rem);max-width:22ch}
-.lede{color:var(--muted);font-size:clamp(1.1rem,1rem+.7vw,1.55rem);line-height:1.45;max-width:60ch;margin-top:1.4rem}
-.serif{font-family:var(--serif);font-style:italic}
-strong{color:var(--text);font-weight:700}.cy{color:var(--cyan)}.em{color:var(--emerald)}
-/* atmospheric base */
-.tint{position:absolute;inset:0;z-index:0}
-.tint.grid::after{content:"";position:absolute;inset:0;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 85% 0%,#000,transparent 70%);opacity:.28}
-.bgimg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover}
-.scrim{position:absolute;inset:0;z-index:1}
+
+/* slide ground: navy with a radial lift at the top right, faint film grain */
+.slide{position:relative;min-height:100vh;min-height:100dvh;width:100%;scroll-snap-align:start;display:flex;flex-direction:column;
+  justify-content:center;padding:calc(var(--pad) + 3.2rem) var(--pad) calc(var(--pad) + 2.4rem);overflow:hidden;isolation:isolate;
+  background:radial-gradient(110% 80% at 100% 0%,var(--lift) 0%,var(--ground) 55%,var(--ground-deep) 100%)}
+.slide::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.slide.alt{background:radial-gradient(90% 70% at 0% 100%,var(--lift) 0%,var(--ground) 55%,var(--ground-deep) 100%)}
+.wrap{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto}
+
+/* type */
+.eyebrow{font-family:var(--mono);font-size:.74rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:1.4rem;display:flex;align-items:center;gap:.9rem}
+.eyebrow .ix{color:var(--muted)}
+.eyebrow::after{content:"";flex:0 0 3rem;height:1px;background:linear-gradient(90deg,var(--accent),transparent)}
+h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;text-wrap:balance}
+h1{line-height:.98;font-size:clamp(2.9rem,1rem + 6.2vw,7rem)}
+h2{line-height:1.02;font-size:clamp(2.3rem,1rem + 3.9vw,4.9rem);max-width:20ch}
+@media (min-width:1001px) and (max-height:960px){h2{font-size:clamp(2.2rem,1rem + 3vw,4rem)}}
+h1 em,h2 em{font-style:italic;color:var(--accent)}
+.lede{color:var(--body);font-size:clamp(1.08rem,.95rem + .55vw,1.4rem);line-height:1.55;max-width:58ch;margin-top:1.6rem;text-wrap:pretty}
+.lede strong,.body strong{color:var(--ink);font-weight:600}
+.body{color:var(--body);font-size:1.02rem;line-height:1.6}
+.mono{font-family:var(--mono)}
+.cy{color:var(--accent)}
+.note{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.03em;margin-top:1.6rem;line-height:1.7}
+
+/* chrome */
+.bar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem var(--pad);pointer-events:none}
+.bar::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,12,29,.85),rgba(8,12,29,0));}
+.brand{display:flex;align-items:center;gap:.8rem;font-family:var(--mono);font-size:.74rem;font-weight:500;letter-spacing:.18em;color:var(--ink);text-decoration:none;pointer-events:auto}
+.brand svg{width:28px;height:28px;color:var(--ink)}
+.brand .dim{color:var(--muted)}
+.bar .meta{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.bar .meta b{color:var(--accent);font-weight:500}
+.foot{position:fixed;bottom:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
+  padding:1rem var(--pad);font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);pointer-events:none}
+.foot::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(8,12,29,.8),rgba(8,12,29,0))}
+.foot .count{font-size:.74rem;letter-spacing:.1em}.foot .count b{color:var(--ink);font-weight:500}
+.foot .hint{display:flex;gap:.5rem;align-items:center}
+.foot kbd{font-family:var(--mono);font-size:.62rem;border:1px solid var(--hairline-2);border-radius:4px;padding:.12rem .38rem;color:var(--body)}
+.prog{position:fixed;top:0;left:0;height:2px;width:100%;z-index:70;background:var(--accent);transform-origin:0 50%;transform:scaleX(0);
+  transition:transform .5s var(--ease);box-shadow:0 0 12px var(--accent-glow)}
+.dots{position:fixed;right:calc(var(--pad) * .45);top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:.35rem}
+.dots a{position:relative;display:flex;align-items:center;justify-content:flex-end;width:28px;height:18px;text-decoration:none}
+.dots a i{display:block;width:6px;height:6px;border-radius:50%;background:var(--hairline-2);transition:all .35s var(--ease)}
+.dots a:hover i{background:var(--body)}
+.dots a[aria-current="true"] i{background:var(--accent);height:18px;border-radius:3px;box-shadow:0 0 10px var(--accent-glow)}
+.dots a span{position:absolute;right:22px;white-space:nowrap;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);background:var(--surface);border:1px solid var(--hairline);border-radius:5px;padding:.3rem .55rem;
+  opacity:0;transform:translateX(6px);transition:all .25s var(--ease);pointer-events:none}
+.dots a:hover span,.dots a:focus-visible span{opacity:1;transform:none}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.js .in .rv{opacity:1;transform:none}
+
+/* shared blocks */
+.grid-cards{display:grid;gap:1px;background:var(--hairline);border:1px solid var(--hairline);border-radius:12px;overflow:hidden;margin-top:2.4rem}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.card{position:relative;background:var(--surface);padding:2rem 1.8rem;transition:background .35s var(--ease)}
+.card:hover{background:var(--surface-2)}
+.card .tag{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.card h3{font-family:var(--sans);font-size:1.3rem;font-weight:600;letter-spacing:-.01em;margin:.7rem 0 .55rem}
+.card p{color:var(--body);font-size:.98rem;line-height:1.55}
+.card .num{position:absolute;top:1.6rem;right:1.8rem;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,1rem + 4vw,5.5rem);align-items:center}
+.two.flip{grid-template-columns:.9fr 1.1fr}
+
 /* COVER */
-.cover{justify-content:flex-end}
-.cover .scrim{background:linear-gradient(180deg,rgba(5,11,22,.55) 0%,rgba(5,11,22,.2) 35%,rgba(5,11,22,.85) 100%)}
-.cover .wordmark{height:clamp(46px,7vw,104px);width:auto;margin-bottom:1.5rem;filter:drop-shadow(0 6px 30px rgba(0,0,0,.5))}
-.cover h1{font-size:clamp(2.6rem,1rem+5.6vw,6rem);max-width:16ch}
-.cover-meta{display:flex;flex-wrap:wrap;gap:2.4rem;margin-top:2rem;font-family:var(--mono);font-size:.8rem;color:var(--muted);letter-spacing:.03em}
-.cover-meta b{color:var(--text);font-weight:600;display:block;margin-top:.2rem}
-.badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--emerald)}
-.badge::before{content:"";width:.42rem;height:.42rem;border-radius:50%;background:var(--emerald)}
-/* layout helpers */
-.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,1rem+3vw,4.5rem);align-items:center}
-.two.imgL{grid-template-columns:.9fr 1.1fr}
-.cards{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:1.8rem}
-.c4{grid-template-columns:repeat(4,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c2{grid-template-columns:1fr 1fr}
-.cell{background:var(--panel);padding:1.7rem 1.6rem}
-.cell .n{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
-.cell h3{font-size:1.3rem;font-weight:750;margin:.5rem 0 .45rem}
-.cell p{color:var(--muted);font-size:.97rem;line-height:1.45}
-/* product frames */
-.shot{border-radius:12px;border:1px solid var(--line2);box-shadow:0 30px 80px -30px rgba(0,0,0,.8),0 0 0 1px rgba(0,0,0,.4);display:block;width:100%}
-.shot-stack{position:relative}
-.shot-stack .inset{position:absolute;right:-4%;bottom:-10%;width:38%;border-radius:10px;border:1px solid var(--line2);box-shadow:0 24px 60px -20px rgba(0,0,0,.85)}
-/* partner rail — uniform monochrome marks on dark, hairline dividers */
-.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:2rem;
-  background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.logo{display:flex;align-items:center;justify-content:center;height:116px;padding:1.4rem;
-  background:var(--panel);transition:background .25s ease}
-.logo:hover{background:var(--control)}
-.logo img{max-height:34px;max-width:64%;object-fit:contain;
-  filter:brightness(0) invert(1);opacity:.62;transition:opacity .25s ease}
-.logo:hover img{opacity:1}
-/* big numbers */
-.bignums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:2rem}
-.bignums div{background:var(--panel);padding:1.7rem 1.4rem}
-.bignums .v{font-family:var(--display);font-weight:600;font-size:clamp(2.3rem,1rem+2.9vw,3.7rem);letter-spacing:-.01em;line-height:1}
-.bignums .v.cy{color:var(--cyan)}
-.bignums .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.55rem}
-.signals{list-style:none;margin-top:1.6rem;display:grid;gap:.9rem;max-width:62ch}
-.signals li{padding-left:1.9rem;position:relative;color:var(--muted);font-size:1.05rem;line-height:1.5}
-.signals li::before{content:"";position:absolute;left:0;top:.72em;width:13px;height:1px;background:rgba(255,255,255,.5)}
-/* pipeline (four stages) */
-.pipe{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;margin:3rem 0 1.4rem}
-.pipe .rail{position:absolute;top:36px;left:9%;right:9%;height:2px;background:linear-gradient(90deg,var(--line2),var(--cyan),var(--line2));z-index:0}
-.pipe .stage{position:relative;z-index:1;text-align:center}
-.pipe .node{width:72px;height:72px;border-radius:50%;margin:0 auto 1.1rem;display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-weight:600;font-size:1.35rem;color:var(--muted);background:var(--control);border:1px solid var(--line2)}
-.pipe .stage.hot .node{color:#031018;background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 0 5px rgba(34,211,238,.1),0 0 24px rgba(34,211,238,.22)}
-.pipe .sname{font-weight:800;font-size:1.55rem;letter-spacing:-.01em;margin-bottom:.5rem}
-.pipe .stage.hot .sname{color:var(--cyan)}
-.pipe .stage p{color:var(--muted);font-size:.95rem;line-height:1.45;max-width:24ch;margin:0 auto}
-.wedge{display:inline-block;margin-top:.75rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--cyan);border:1px solid var(--line2);border-radius:999px;padding:.28rem .75rem}
-@media(max-width:860px){.pipe{grid-template-columns:1fr 1fr;gap:2rem}.pipe .rail{display:none}}
-.note{font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.03em;margin-top:1.4rem;line-height:1.6}
-/* market */
-.mkt{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,1rem+2vw,3.2rem);align-items:center;margin-top:1.6rem}
-.mcard{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:1.5rem}
-.mcard .n{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
-.mcard .v{font-family:var(--display);font-weight:600;font-size:clamp(2rem,1rem+2.2vw,3rem);letter-spacing:-.01em;margin:.3rem 0}
-.mcard p{color:var(--muted);font-size:.9rem;line-height:1.4}
-.chart{width:100%;height:auto}
-/* founder */
-.founder-img{width:100%;border-radius:12px;border:1px solid var(--line2);box-shadow:0 30px 80px -30px rgba(0,0,0,.8)}
-.book{width:120px;border-radius:4px;box-shadow:0 16px 40px -12px rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.1)}
-.pull{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,1rem+2vw,2.6rem);line-height:1.2}
-.cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.8rem;background:var(--red);color:#fff;font-weight:700;
-  padding:.95rem 1.7rem;border-radius:7px;text-decoration:none;font-size:1.1rem}
-.cta:hover{background:var(--red2)}
-a:focus-visible,.cta:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+.cover{justify-content:center;background:radial-gradient(70% 90% at 78% 40%,#16306a 0%,var(--ground) 52%,var(--ground-deep) 100%)}
+.cover .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:3rem;align-items:center}
+.cover h1{max-width:13ch}
+.cover .sub{color:var(--body);font-size:clamp(1.05rem,.95rem + .5vw,1.35rem);line-height:1.55;max-width:46ch;margin-top:1.8rem}
+.cover-meta{display:grid;grid-template-columns:repeat(3,auto);margin-top:2.8rem;border:1px solid var(--hairline);border-radius:10px;overflow:hidden;width:fit-content;max-width:100%;background:rgba(22,31,60,.75);backdrop-filter:blur(6px)}
+.cover-meta>div+div{border-left:1px solid var(--hairline)}
+.cover-meta>div{backdrop-filter:blur(6px);padding:1rem 1.3rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.cover-meta b{display:block;margin-top:.4rem;font-family:var(--sans);font-size:.95rem;letter-spacing:0;text-transform:none;font-weight:500;color:var(--ink)}
+.live{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.live::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent-glow);animation:ping 2.4s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(6,207,239,.55)}70%{box-shadow:0 0 0 .6rem rgba(6,207,239,0)}100%{box-shadow:0 0 0 0 rgba(6,207,239,0)}}
+.orb{position:relative;aspect-ratio:1;width:100%;max-width:440px;justify-self:center}
+.orb::before{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(6,207,239,.22),transparent 65%);filter:blur(20px);animation:breathe 6s ease-in-out infinite}
+.orb .ring{position:absolute;inset:0;border-radius:50%;border:1px solid var(--hairline)}
+.orb .ring.r2{inset:-14%;border-style:dashed;border-color:rgba(42,51,84,.7);animation:spin 80s linear infinite}
+.orb svg{position:relative;width:100%;height:100%;color:var(--ink);overflow:visible}
+.orb .arc{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.js .in .orb .arc{animation:draw 1.8s var(--ease) forwards;animation-delay:calc(var(--i) * 120ms + 200ms)}
+.js .orb .bar-s{opacity:0}.js .in .orb .bar-s{animation:fade .8s var(--ease) 1.1s forwards}
+html:not(.js) .orb .arc{stroke-dashoffset:0}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes fade{to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+.scroll-cue{position:absolute;left:50%;bottom:3.6rem;transform:translateX(-50%);z-index:3;font-family:var(--mono);font-size:.62rem;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.7rem}
+.scroll-cue::after{content:"";width:1px;height:38px;background:linear-gradient(var(--accent),transparent);animation:cue 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* PROBLEM */
+.versus{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-top:3rem;border:1px solid var(--hairline);border-radius:12px;overflow:hidden;background:var(--surface)}
+.versus>div{padding:2.2rem 2rem}
+.versus .mid{width:1px;background:var(--hairline);padding:0}
+.versus .lab{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.versus .big{font-family:var(--serif);font-size:clamp(1.7rem,1rem + 1.6vw,2.5rem);line-height:1.1;margin:1rem 0 .9rem}
+.meter{height:6px;border-radius:3px;background:var(--hairline);overflow:hidden;margin-top:1.4rem}
+.meter i{display:block;height:100%;border-radius:3px;width:var(--w);transform-origin:0 50%;transform:scaleX(0);transition:transform 1.6s var(--ease) .5s}
+.in .meter i{transform:scaleX(1)}
+html:not(.js) .meter i{transform:none}
+.meter.down i{background:linear-gradient(90deg,var(--muted),var(--hairline-2))}
+.meter.up i{background:linear-gradient(90deg,var(--accent),#7ce9fa)}
+
+/* SOLUTION */
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-top:2rem}
+.flow span{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;color:var(--ink);border:1px solid var(--hairline-2);background:var(--surface);border-radius:999px;padding:.5rem .9rem}
+.flow span.hot{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.flow b{color:var(--muted);font-weight:400;font-family:var(--mono)}
+.term{margin-top:2rem;border:1px solid var(--hairline);border-radius:12px;background:#070b1a;overflow:hidden;max-width:560px;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+.term .tb{display:flex;align-items:center;gap:.4rem;padding:.7rem 1rem;border-bottom:1px solid var(--hairline)}
+.term .tb i{width:9px;height:9px;border-radius:50%;background:var(--hairline-2)}
+.term .tb span{margin-left:auto;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--muted)}
+.term .cmd{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.2rem;font-family:var(--mono);font-size:1rem}
+.term .cmd .p{color:var(--muted)}
+.term .cmd code{color:var(--ink)}
+.term .caret{display:inline-block;width:.55em;height:1.1em;background:var(--accent);vertical-align:-.18em;margin-left:.2em;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.copy{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--body);background:transparent;border:1px solid var(--hairline-2);border-radius:6px;padding:.4rem .7rem;cursor:pointer;transition:all .2s}
+.copy:hover{color:var(--ink);border-color:var(--accent)}
+.term .out{padding:0 1.2rem 1.1rem;font-family:var(--mono);font-size:.78rem;color:var(--muted);line-height:1.7}
+.term .out .ok{color:var(--accent)}
+.solution-mark{position:relative;display:grid;place-items:center;aspect-ratio:1;max-width:380px;width:100%;justify-self:center}
+.solution-mark .pulse{position:absolute;inset:18%;border-radius:50%;border:1px solid var(--accent);opacity:0;animation:pulse 4s var(--ease) infinite}
+.solution-mark .pulse:nth-child(2){animation-delay:1.33s}.solution-mark .pulse:nth-child(3){animation-delay:2.66s}
+@keyframes pulse{0%{transform:scale(.7);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+.solution-mark svg{width:56%;height:56%;color:var(--ink);filter:drop-shadow(0 0 40px rgba(6,207,239,.25))}
+
+/* PRODUCT */
+.browser{border-radius:12px;border:1px solid var(--hairline-2);background:var(--surface);overflow:hidden;box-shadow:0 50px 100px -40px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4)}
+.browser .tb{display:flex;align-items:center;gap:.4rem;padding:.6rem .85rem;border-bottom:1px solid var(--hairline);background:#10182f}
+.browser .tb i{width:8px;height:8px;border-radius:50%;background:var(--hairline-2)}
+.browser .url{margin:0 auto;font-family:var(--mono);font-size:.66rem;color:var(--muted);background:var(--ground-deep);border:1px solid var(--hairline);border-radius:5px;padding:.25rem 1.2rem;display:flex;gap:.5rem;align-items:center}
+.browser .url::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.browser img{display:block;width:100%;height:auto}
+.shot-stack{position:relative;padding-bottom:8%}
+.shot-stack .phone{position:absolute;right:-5%;bottom:-2%;width:34%;border-radius:14px;border:1px solid var(--hairline-2);box-shadow:0 30px 70px -20px rgba(0,0,0,.95);overflow:hidden;background:var(--surface)}
+.shot-stack .phone img{display:block;width:100%;height:auto}
+.checks{list-style:none;margin-top:1.8rem;display:grid;gap:.85rem}
+.checks li{display:flex;gap:.9rem;align-items:flex-start;color:var(--body);font-size:1.04rem;line-height:1.5}
+.checks li::before{content:"";flex:none;width:18px;height:18px;margin-top:.2em;border-radius:5px;border:1px solid var(--accent);
+  background:var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%2306cfef' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+.link{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(6,207,239,.35);transition:border-color .2s}
+.link:hover{border-color:var(--accent)}
+
+/* PIPELINE */
+.pipe{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;margin:3.6rem 0 1.6rem}
+.pipe .rail{position:absolute;top:38px;left:12.5%;right:12.5%;height:2px;background:var(--hairline);z-index:0;overflow:hidden;border-radius:2px}
+.pipe .rail i{position:absolute;inset:0;background:linear-gradient(90deg,var(--hairline-2),var(--accent) 35%,var(--accent) 45%,var(--hairline-2));transform-origin:0 50%;transform:scaleX(0);transition:transform 1.8s var(--ease) .3s}
+.in .pipe .rail i{transform:scaleX(1)}
+html:not(.js) .pipe .rail i{transform:none}
+.pipe .rail b{position:absolute;top:-2px;width:60px;height:6px;border-radius:3px;background:radial-gradient(closest-side,#fff,var(--accent),transparent);animation:packet 3.6s linear infinite}
+@keyframes packet{from{left:-60px}to{left:100%}}
+.stage{position:relative;z-index:1;text-align:center}
+.stage .node{width:76px;height:76px;border-radius:50%;margin:0 auto 1.3rem;display:grid;place-items:center;
+  font-family:var(--mono);font-weight:500;font-size:1.1rem;color:var(--body);background:var(--surface);border:1px solid var(--hairline-2)}
+.stage.hot .node{color:var(--on-fill);background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 8px rgba(6,207,239,.08),0 0 44px rgba(6,207,239,.4)}
+.stage .sname{font-family:var(--serif);font-size:2rem;margin-bottom:.6rem}
+.stage.hot .sname{font-style:italic;color:var(--accent)}
+.stage p{color:var(--body);font-size:.95rem;line-height:1.5;max-width:24ch;margin:0 auto}
+.wedge{display:inline-block;margin-top:.9rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:.3rem .8rem;background:var(--accent-soft)}
+
+/* PARTNERS */
+.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:2.6rem;background:var(--hairline);border:1px solid var(--hairline);border-radius:12px;overflow:hidden}
+.logo{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.9rem;height:150px;padding:1.4rem;background:var(--surface);transition:background .35s var(--ease)}
+.logo::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 120%,rgba(6,207,239,.18),transparent);opacity:0;transition:opacity .35s}
+.logo:hover{background:var(--surface-2)}.logo:hover::after{opacity:1}
+.logo img{max-height:40px;max-width:60%;object-fit:contain;filter:brightness(0) invert(1);opacity:.7;transition:opacity .3s,transform .3s var(--ease)}
+.logo:hover img{opacity:1;transform:translateY(-3px)}
+.logo small{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* TRACTION */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hairline);border:1px solid var(--hairline);border-radius:12px;overflow:hidden;margin-top:2.6rem}
+.nums>div{position:relative;background:var(--surface);padding:2rem 1.7rem 1.8rem;overflow:hidden}
+.nums>div:first-child{background:linear-gradient(160deg,rgba(6,207,239,.14),var(--surface) 60%)}
+.nums .v{font-family:var(--serif);font-size:clamp(3.2rem,1.4rem + 4vw,5.4rem);line-height:.9;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.nums>div:first-child .v{color:var(--accent)}
+.nums .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--body);margin-top:1rem;line-height:1.5}
+.proof{list-style:none;margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:.9rem 2.4rem}
+.proof li{position:relative;padding:0 0 0 1.5rem;color:var(--body);font-size:1rem;line-height:1.55}
+.proof li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--accent);transform:rotate(45deg)}
+.proof li strong{color:var(--ink);font-weight:600}
+
+/* MARKET */
+.mkt{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.6rem,1rem + 3vw,4rem);align-items:center;margin-top:2.4rem}
+.chart-card{border:1px solid var(--hairline);border-radius:12px;background:var(--surface);padding:1.6rem 1.6rem 1.2rem}
+.chart-card .hd{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.chart-card .hd b{font-weight:500;color:var(--accent)}
+.chart{width:100%;height:auto;margin-top:.8rem;overflow:visible}
+.chart .ln{stroke-dasharray:900;stroke-dashoffset:900}
+.chart .area{opacity:0}
+.js .in .chart .ln{transition:stroke-dashoffset 2.2s var(--ease) .3s;stroke-dashoffset:0}
+.js .in .chart .area{transition:opacity 1.2s ease 1.2s;opacity:1}
+html:not(.js) .chart .ln{stroke-dashoffset:0}html:not(.js) .chart .area{opacity:1}
+.chart .end{opacity:0}.js .in .chart .end{transition:opacity .6s ease 2.3s;opacity:1}html:not(.js) .chart .end{opacity:1}
+.chart text{font-family:'IBM Plex Mono',monospace}
+.stack{display:grid;gap:1px;background:var(--hairline);border:1px solid var(--hairline);border-radius:12px;overflow:hidden}
+.mcard{background:var(--surface);padding:1.4rem 1.5rem;display:grid;grid-template-columns:auto 1fr;gap:.2rem 1.2rem;align-items:baseline}
+.mcard .n{grid-column:1/-1;font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.mcard .v{font-family:var(--serif);font-size:clamp(2.1rem,1rem + 2.2vw,3rem);letter-spacing:-.01em;line-height:1.05}
+.mcard:first-child .v{color:var(--accent)}
+.mcard p{color:var(--body);font-size:.9rem;line-height:1.45}
+
+/* BUSINESS MODEL */
+.status{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.62rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border-radius:999px;padding:.3rem .7rem}
+.status.on{color:var(--accent);background:var(--accent-soft);border:1px solid rgba(6,207,239,.4)}
+.status.on::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);animation:ping 2.4s infinite}
+.status.off{color:var(--muted);border:1px solid var(--hairline-2)}
+.status.off::before{content:"";width:6px;height:6px;border-radius:50%;border:1px solid var(--muted)}
+.model .card{padding:2.2rem 2rem}
+.model .card h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,1rem + 1vw,2.1rem);margin:1.1rem 0 .6rem;letter-spacing:-.005em}
+
+/* FOUNDER */
+.portrait{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--hairline-2);box-shadow:0 50px 100px -40px rgba(0,0,0,.9)}
+.portrait img{display:block;width:100%;height:auto;max-height:min(72vh,680px);object-fit:cover;object-position:50% 20%}
+.portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,12,29,.85))}
+.portrait figcaption{position:absolute;left:1.2rem;bottom:1.1rem;z-index:2;font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--body)}
+.portrait figcaption b{display:block;color:var(--ink);font-weight:500;margin-bottom:.2rem}
+.pull{position:relative;font-family:var(--serif);font-size:clamp(1.55rem,1rem + 1.8vw,2.5rem);line-height:1.2;margin-top:2rem;padding-left:1.6rem;border-left:2px solid var(--accent)}
+.pull em{color:var(--accent)}
+.book{display:flex;align-items:center;gap:1.3rem;margin-top:2rem;padding:1rem;border:1px solid var(--hairline);border-radius:12px;background:var(--surface);max-width:520px}
+.book img{width:74px;height:auto;flex:none;border-radius:3px;box-shadow:0 14px 30px -10px rgba(0,0,0,.9)}
+.book p{color:var(--body);font-size:.92rem;line-height:1.5}
+
+/* ASK */
+.ask{background:radial-gradient(60% 70% at 50% 110%,rgba(6,207,239,.18),transparent 70%),radial-gradient(110% 80% at 100% 0%,var(--lift) 0%,var(--ground) 55%,var(--ground-deep) 100%)}
+.ask h2{max-width:20ch}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:1.4rem 2rem;margin-top:2.6rem}
+.cta{display:inline-flex;align-items:center;gap:.8rem;background:var(--fill);color:var(--on-fill);font-weight:600;font-size:1.08rem;
+  padding:1.1rem 1.8rem;border-radius:8px;text-decoration:none;box-shadow:0 0 0 0 rgba(255,255,255,.3),0 20px 40px -16px rgba(6,207,239,.5);transition:transform .25s var(--ease),box-shadow .25s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 0 0 6px rgba(255,255,255,.08),0 24px 50px -16px rgba(6,207,239,.7)}
+.cta .arr{transition:transform .25s var(--ease)}.cta:hover .arr{transform:translateX(4px)}
+.contact{font-family:var(--mono);font-size:.78rem;line-height:1.8;color:var(--muted)}
+.contact a{color:var(--ink);text-decoration:none}.contact a:hover{color:var(--accent)}
+
+/* SOURCES */
+.ledger{width:100%;border-collapse:collapse;font-size:.93rem;margin-top:2rem;border:1px solid var(--hairline);border-radius:12px;overflow:hidden;background:var(--surface)}
+.ledger th,.ledger td{text-align:left;padding:.95rem 1.2rem;border-bottom:1px solid var(--hairline);vertical-align:top}
+.ledger tr:last-child td{border-bottom:0}
+.ledger th{font-family:var(--mono);font-weight:500;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);background:#10182f}
+.ledger td{color:var(--body)}
+.ledger td:first-child{color:var(--ink);font-weight:600}
+.ledger td:nth-child(2){font-family:var(--mono);font-size:.84rem;color:var(--ink)}
+.ledger tbody tr{transition:background .2s}.ledger tbody tr:hover{background:var(--surface-2)}
+.closer{display:flex;align-items:center;gap:1rem;margin-top:2.4rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.closer svg{width:30px;height:30px;color:var(--ink)}
+
+a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* responsive */
+@media (max-height:860px){.scroll-cue{display:none}}
+@media (max-width:1000px){
+  .cover .wrap{grid-template-columns:1fr}.orb{max-width:260px;justify-self:start;order:-1;margin-bottom:.5rem}
+  .two,.two.flip,.mkt{grid-template-columns:1fr}
+  .g4,.g3,.nums,.logos{grid-template-columns:1fr 1fr}
+  .solution-mark{max-width:220px}
+  .dots{display:none}
+}
+@media (max-width:760px){
+  .deck{scroll-snap-type:y proximity}
+  .slide{min-height:auto;padding-top:5.5rem;padding-bottom:5rem}
+  .cover{min-height:100vh;min-height:100dvh}
+  .g2,.versus,.proof,.cover-meta{grid-template-columns:1fr}.cover-meta{width:100%}.cover-meta>div+div{border-left:0;border-top:1px solid var(--hairline)}
+  .versus .mid{width:auto;height:1px}
+  .pipe{grid-template-columns:1fr 1fr;gap:2.4rem 1rem}.pipe .rail{display:none}
+  .shot-stack .phone{width:40%;right:-2%}
+  .ledger thead{display:none}.ledger tr{display:block;padding:.9rem 1rem;border-bottom:1px solid var(--hairline)}
+  .ledger td{display:block;padding:.15rem 0;border:0}
+  .bar .meta,.foot .hint,.scroll-cue{display:none}
+  .card .num{display:none}
+}
+@media (max-width:420px){.g4,.g3{grid-template-columns:1fr}.logo{height:110px}.nums>div{padding:1.5rem 1.2rem}.brand .dim{display:none}}
 @media (prefers-reduced-motion:reduce){
   .deck{scroll-behavior:auto;scroll-snap-type:none}
-  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
-}
-.ledger{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:1.4rem}
-.ledger th,.ledger td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
-.ledger th{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
-.ledger td:first-child{color:var(--text);font-weight:600;white-space:nowrap}.ledger td{color:var(--muted)}.ledger a{color:var(--sky)}
-/* chrome */
-.wm{position:fixed;top:1.4rem;left:var(--pad);font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);z-index:60}
-.wm b{color:var(--text)}
-.counter{position:fixed;bottom:1.3rem;right:var(--pad);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted);z-index:60}
-.counter b{color:var(--cyan)}
-.conf{position:fixed;bottom:1.3rem;left:var(--pad);font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);z-index:60}
-.prog{position:fixed;top:0;left:0;height:2px;background:var(--cyan);width:0;z-index:70;transition:width .25s}
-@media (max-width:860px){
-  .two,.two.imgL,.mkt{grid-template-columns:1fr}.c4,.c3{grid-template-columns:1fr 1fr}
-  .bignums,.logos{grid-template-columns:1fr 1fr}.shot-stack .inset{position:static;width:60%;margin:1rem auto 0;display:block}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
 }
 @media print{
   @page{size:1280px 720px;margin:0}
   body,.deck{height:auto;overflow:visible;display:block}.deck{scroll-snap-type:none}
-  .slide{min-height:720px;page-break-after:always;border:0;overflow:visible}
-  .wm,.counter,.conf,.prog{position:absolute}
+  .slide{min-height:720px;height:720px;page-break-after:always;break-after:page;overflow:hidden}
+  .bar,.foot,.prog,.dots,.scroll-cue{display:none}
+  .js .rv{opacity:1!important;transform:none!important}
+  .orb .arc,.chart .ln{stroke-dashoffset:0!important}.orb .bar-s,.chart .area,.chart .end{opacity:1!important}
+  .meter i,.pipe .rail i{transform:none!important}
 }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="smark" viewBox="70 70 260 260">
+    <g fill="none" stroke="currentColor" stroke-linecap="round">
+      <path stroke-width="16.45" d="M86.40 202.96A113.10 113.10 0 0 1 282.03 122.32"/>
+      <path stroke-width="16.45" d="M312.50 196.24A113.10 113.10 0 0 1 116.87 276.88"/>
+      <path stroke-width="17.15" d="M113.44 203.02A86.08 86.08 0 0 1 262.12 140.59"/>
+      <path stroke-width="17.15" d="M285.46 196.18A86.08 86.08 0 0 1 136.78 258.61"/>
+      <path stroke-width="16.4" d="M141.49 203.35A58.08 58.08 0 0 1 242.36 160.46"/>
+      <path stroke-width="16.4" d="M257.41 195.85A58.08 58.08 0 0 1 156.54 238.74"/>
+    </g>
+    <path fill="currentColor" d="M140.00 188.90H250.00V211.90H140.00Z"/>
+  </symbol>
+</svg>
+
 <div class="prog" id="prog"></div>
-<div class="wm"><b>SUEDE LABS&nbsp;AI</b> · Investor Brief</div>
-<div class="conf">Confidential</div>
-<div class="counter"><b id="cur">01</b> / 13</div>
+<header class="bar">
+  <a class="brand" href="#s1" aria-label="Suede Labs AI, back to cover"><svg aria-hidden="true"><use href="#smark"/></svg>SUEDE LABS AI <span class="dim">/ INVESTOR BRIEF</span></a>
+  <span class="meta">2026 · <b>Base mainnet</b></span>
+</header>
+<nav class="dots" id="dots" aria-label="Slides"></nav>
+<footer class="foot">
+  <span>Confidential</span>
+  <span class="hint"><kbd>↑</kbd><kbd>↓</kbd> to navigate</span>
+  <span class="count"><b id="cur">01</b> / <span id="tot">13</span></span>
+</footer>
 
 <main class="deck" id="deck">
 
   <!-- 1 COVER -->
-  <section class="slide cover">
-    <img class="bgimg" src="assets/cover-bg.png" alt="" width="2880" height="1620" fetchpriority="high">
-    <div class="scrim"></div>
+  <section class="slide cover" id="s1" data-title="Cover">
     <div class="wrap">
-      <img class="wordmark" src="assets/wordmark.png" alt="Suede Labs AI" width="3840" height="1560">
-      <p class="kick" style="color:#fff">Investor Brief · 2026</p>
-      <h1>The ownership layer<br>for the <span class="cy">AI media era.</span></h1>
-      <div class="cover-meta">
-        <span>Founder &amp; CEO<b>Jason Colapietro · Johnny Suede</b></span>
-        <span>Stage<b>Proof of execution, on-chain &amp; live</b></span>
-        <span><span class="badge">Live on Base mainnet</span></span>
+      <div>
+        <p class="eyebrow rv">Investor brief · 2026</p>
+        <h1 class="rv" style="--d:1">The ownership layer for the <em>AI media era.</em></h1>
+        <p class="sub rv" style="--d:2">Suede Labs AI is the agent-native rights layer: proof of creation, programmable IP and on-chain royalty routing that autonomous agents can pay through.</p>
+        <div class="cover-meta rv" style="--d:3">
+          <div>Founder &amp; CEO<b>Jason Colapietro · Johnny Suede</b></div>
+          <div>Stage<b>Proof of execution, on-chain</b></div>
+          <div>Status<b><span class="live">Live on Base mainnet</span></b></div>
+        </div>
+      </div>
+      <div class="orb" aria-hidden="true">
+        <div class="ring r2"></div><div class="ring"></div>
+        <svg viewBox="70 70 260 260">
+          <g fill="none" stroke="currentColor" stroke-linecap="round">
+            <path class="arc" style="--len:360;--i:0" stroke-width="16.45" d="M86.40 202.96A113.10 113.10 0 0 1 282.03 122.32"/>
+            <path class="arc" style="--len:360;--i:1" stroke-width="16.45" d="M312.50 196.24A113.10 113.10 0 0 1 116.87 276.88"/>
+            <path class="arc" style="--len:280;--i:2" stroke-width="17.15" d="M113.44 203.02A86.08 86.08 0 0 1 262.12 140.59"/>
+            <path class="arc" style="--len:280;--i:3" stroke-width="17.15" d="M285.46 196.18A86.08 86.08 0 0 1 136.78 258.61"/>
+            <path class="arc" style="--len:190;--i:4" stroke-width="16.4" d="M141.49 203.35A58.08 58.08 0 0 1 242.36 160.46"/>
+            <path class="arc" style="--len:190;--i:5" stroke-width="16.4" d="M257.41 195.85A58.08 58.08 0 0 1 156.54 238.74"/>
+          </g>
+          <path class="bar-s" fill="currentColor" d="M140.00 188.90H250.00V211.90H140.00Z"/>
+        </svg>
       </div>
     </div>
+    <div class="scroll-cue">Scroll</div>
   </section>
 
   <!-- 2 PROBLEM -->
-  <section class="slide">
-    <div class="tint grid"></div>
+  <section class="slide" id="s2" data-title="Problem">
     <div class="wrap">
-      <p class="kick">01 · The problem</p>
-      <h2>Creation got cheap.<br>Ownership didn't scale.</h2>
-      <div class="two" style="margin-top:1.8rem">
-        <p class="lede" style="margin:0">AI drove the cost of making songs, images, video, and synthetic media toward zero. Value is leaving production — and the layer that proves authorship, carries rights, and routes payment is breaking.</p>
-        <p class="lede" style="margin:0">Copyright protects ownership <em>after</em> distribution. AI-era media moves faster than that. Ownership has to be machine-readable, upstream, and portable across humans <strong>and</strong> agents.</p>
+      <p class="eyebrow rv"><span class="ix">01</span> The problem</p>
+      <h2 class="rv" style="--d:1">Creation got cheap. <em>Ownership didn't scale.</em></h2>
+      <div class="versus rv" style="--d:2">
+        <div>
+          <div class="lab"><span>Cost to create</span><span>AI era</span></div>
+          <p class="big">Heading toward zero.</p>
+          <p class="body">AI drove the cost of making songs, images, video and synthetic media toward zero. Value is leaving production, and the layer that proves authorship, carries rights and routes payment is breaking.</p>
+          <div class="meter down"><i style="--w:12%"></i></div>
+        </div>
+        <div class="mid"></div>
+        <div>
+          <div class="lab"><span>What ownership needs</span><span class="cy">Upstream</span></div>
+          <p class="big">Machine-readable, <em class="cy">portable.</em></p>
+          <p class="body">Copyright protects ownership <em>after</em> distribution. AI-era media moves faster than that. Ownership has to be machine-readable, upstream and portable across humans <strong>and</strong> agents.</p>
+          <div class="meter up"><i style="--w:100%"></i></div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- 3 WHY NOW -->
-  <section class="slide">
-    <div class="tint grid"></div>
+  <section class="slide alt" id="s3" data-title="Why now">
     <div class="wrap">
-      <p class="kick">02 · Why now</p>
-      <h2>Three curves converging in 2026.</h2>
-      <div class="cards c3">
-        <div class="cell"><span class="n">Supply shock</span><h3>AI-media volume</h3><p>Generated media is exploding across every format — provenance can't keep up by hand.</p></div>
-        <div class="cell"><span class="n">New buyers</span><h3>Agent commerce</h3><p>Autonomous agents now pay per call for content and APIs — they need machine-readable rights.</p></div>
-        <div class="cell"><span class="n">New rails</span><h3>On-chain standards</h3><p>ERC-8004 identity, reputation &amp; validation mature into a usable ownership substrate.</p></div>
+      <p class="eyebrow rv"><span class="ix">02</span> Why now</p>
+      <h2 class="rv" style="--d:1">Three curves converging <em>in 2026.</em></h2>
+      <div class="grid-cards g3">
+        <div class="card rv" style="--d:2"><span class="num">01</span><span class="tag">Supply shock</span><h3>AI-media volume</h3><p>Generated media is exploding across every format. Provenance can't keep up by hand.</p></div>
+        <div class="card rv" style="--d:3"><span class="num">02</span><span class="tag">New buyers</span><h3>Agent commerce</h3><p>Autonomous agents now pay per call for content and APIs. They need machine-readable rights.</p></div>
+        <div class="card rv" style="--d:4"><span class="num">03</span><span class="tag">New rails</span><h3>On-chain standards</h3><p>ERC-8004 identity, reputation &amp; validation mature into a usable ownership substrate.</p></div>
       </div>
-      <p class="note">The question isn't whether another tool can generate media. It's who owns the rails when that media has to be proven, licensed, and paid out.</p>
+      <p class="pull rv" style="--d:5;font-size:clamp(1.3rem,1rem + 1.1vw,1.9rem);max-width:40ch">The question isn't whether another tool can generate media. It's who owns the rails when that media has to be <em>proven, licensed and paid out.</em></p>
     </div>
   </section>
 
   <!-- 4 SOLUTION -->
-  <section class="slide">
-    <div class="tint grid"></div>
-    <div class="wrap two imgL">
-      <div style="text-align:center">
-        <img src="assets/mark.png" alt="Suede mark" width="400" height="400" loading="lazy" decoding="async" style="width:min(64%,240px);filter:drop-shadow(0 14px 44px rgba(0,0,0,.55))">
+  <section class="slide" id="s4" data-title="What Suede is">
+    <div class="wrap two flip">
+      <div class="solution-mark rv" aria-hidden="true">
+        <span class="pulse"></span><span class="pulse"></span><span class="pulse"></span>
+        <svg><use href="#smark"/></svg>
       </div>
       <div>
-        <p class="kick">03 · What Suede is</p>
-        <h2>The agent-native rights layer.</h2>
-        <p class="lede">Machine-readable proof of creation and on-chain royalty routing, so autonomous AI agents can discover, license, and pay for creative work: <strong>proof of creation → programmable IP → provenance → royalty routing → agent commerce.</strong> Live on Base mainnet — the rail agents transact <em>through</em> for IP.</p>
-        <p class="note" style="margin-top:1.4rem;font-size:.95rem;color:var(--muted)">
-          <span class="cy" style="font-family:var(--mono)">$ pip install suede-ai</span>
-          &nbsp;·&nbsp; one install, and an agent pays for owned work over x402. The whole rail behind a single call.
-        </p>
+        <p class="eyebrow rv"><span class="ix">03</span> What Suede is</p>
+        <h2 class="rv" style="--d:1">The agent-native <em>rights layer.</em></h2>
+        <p class="lede rv" style="--d:2">Machine-readable proof of creation and on-chain royalty routing, so autonomous AI agents can discover, license and pay for creative work. Live on Base mainnet: the rail agents transact <em>through</em> for IP.</p>
+        <div class="flow rv" style="--d:3" aria-label="The Suede rail">
+          <span class="hot">Proof of creation</span><b>→</b><span>Programmable IP</span><b>→</b><span>Provenance</span><b>→</b><span>Royalty routing</span><b>→</b><span>Agent commerce</span>
+        </div>
+        <div class="term rv" style="--d:4">
+          <div class="tb"><i></i><i></i><i></i><span>ONE INSTALL</span></div>
+          <div class="cmd"><span><span class="p">$ </span><code id="pipcmd">pip install suede-ai</code><span class="caret" aria-hidden="true"></span></span><button class="copy" type="button" data-copy="pip install suede-ai">Copy</button></div>
+          <div class="out"><span class="ok">✓</span> An agent pays for owned work over x402. The whole rail behind a single call.</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- 5 PRODUCT -->
-  <section class="slide">
-    <div class="tint grid"></div>
+  <section class="slide alt" id="s5" data-title="Product">
     <div class="wrap two">
       <div>
-        <p class="kick">04 · Product</p>
-        <h2>Shipped. Not slideware.</h2>
-        <p class="lede">A working product surface — rights passports, licensing, royalty vaults, and an on-chain swap — live today at <a href="https://app.suedeai.ai" class="cy" target="_blank" rel="noopener">app.suedeai.ai</a>, alongside the iOS Suede Studio line.</p>
-        <ul class="signals" style="margin-top:1.2rem">
+        <p class="eyebrow rv"><span class="ix">04</span> Product</p>
+        <h2 class="rv" style="--d:1">Shipped. <em>Not slideware.</em></h2>
+        <p class="lede rv" style="--d:2">A working product surface (rights passports, licensing, royalty vaults and an on-chain swap) live today at <a href="https://app.suedeai.ai" class="link" target="_blank" rel="noopener">app.suedeai.ai</a>, alongside the iOS Suede Studio line.</p>
+        <ul class="checks rv" style="--d:3">
           <li>Artist royalty vaults &amp; participation</li>
           <li>Registry-backed proof of creation</li>
           <li>Agent-native, per-call USDC settlement</li>
         </ul>
       </div>
-      <div class="shot-stack">
-        <img class="shot" src="assets/product-vaults.png" alt="Suede artist royalty vaults" width="1280" height="709" loading="lazy" decoding="async">
-        <img class="inset" src="assets/product-swap.png" alt="Suede swap, live" width="527" height="633" loading="lazy" decoding="async">
+      <div class="shot-stack rv" style="--d:2">
+        <div class="browser">
+          <div class="tb"><i></i><i></i><i></i><span class="url">app.suedeai.ai</span></div>
+          <img src="assets/product-vaults.png" alt="Suede artist royalty vaults" width="1280" height="709" loading="lazy" decoding="async">
+        </div>
+        <div class="phone"><img src="assets/product-swap.png" alt="Suede swap, live" width="527" height="633" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
 
   <!-- 6 FOUR STAGES -->
-  <section class="slide">
-    <div class="tint grid"></div>
+  <section class="slide" id="s6" data-title="The model">
     <div class="wrap">
-      <p class="kick">05 · The model</p>
-      <h2>Four stages. One ownership spine.</h2>
+      <p class="eyebrow rv"><span class="ix">05</span> The model</p>
+      <h2 class="rv" style="--d:1">Four stages. <em>One ownership spine.</em></h2>
       <div class="pipe">
-        <div class="rail"></div>
-        <div class="stage"><div class="node">01</div><div class="sname">Create</div><p>AI lowers the cost of making media of every kind.</p></div>
-        <div class="stage hot"><div class="node">02</div><div class="sname">Prove</div><p>Authorship, voice, likeness, consent &amp; rights travel with the work.</p><span class="wedge">Suede's wedge</span></div>
-        <div class="stage"><div class="node">03</div><div class="sname">Launch</div><p>Routes to funding, audience &amp; ownership participation.</p></div>
-        <div class="stage"><div class="node">04</div><div class="sname">Earn</div><p>Payments, vaults, royalties, licensing &amp; agent commerce turn output into income.</p></div>
+        <div class="rail"><i></i><b></b></div>
+        <div class="stage rv" style="--d:2"><div class="node">01</div><div class="sname">Create</div><p>AI lowers the cost of making media of every kind.</p></div>
+        <div class="stage hot rv" style="--d:3"><div class="node">02</div><div class="sname">Prove</div><p>Authorship, voice, likeness, consent &amp; rights travel with the work.</p><span class="wedge">Suede's wedge</span></div>
+        <div class="stage rv" style="--d:4"><div class="node">03</div><div class="sname">Launch</div><p>Routes to funding, audience &amp; ownership participation.</p></div>
+        <div class="stage rv" style="--d:5"><div class="node">04</div><div class="sname">Earn</div><p>Payments, vaults, royalties, licensing &amp; agent commerce turn output into income.</p></div>
       </div>
-      <p class="note" style="text-align:center;max-width:none;font-size:.95rem;color:var(--muted)">Everything downstream settles against the proof layer — and that layer is Suede.</p>
+      <p class="note rv" style="--d:6;text-align:center;font-size:.9rem;color:var(--body)">Everything downstream settles against the proof layer, and that layer is Suede.</p>
     </div>
   </section>
 
   <!-- 7 PARTNERS -->
-  <section class="slide">
-    <div class="tint grid"></div>
+  <section class="slide alt" id="s7" data-title="Partners">
     <div class="wrap">
-      <p class="kick">06 · Built on / integrated / partnered</p>
-      <h2>Standing on serious rails.</h2>
-      <div class="logos">
-        <div class="logo"><img src="assets/partners/mono/base.png" alt="Base" width="256" height="256" loading="lazy" decoding="async"></div>
-        <div class="logo"><img src="assets/partners/stripe.svg" alt="Stripe" width="24" height="24" loading="lazy" decoding="async"></div>
-        <div class="logo"><img src="assets/partners/google-cloud.svg" alt="Google Cloud" width="24" height="24" loading="lazy" decoding="async"></div>
-        <div class="logo"><img src="assets/partners/chainlink.svg" alt="Chainlink" width="24" height="24" loading="lazy" decoding="async"></div>
-        <div class="logo"><img src="assets/partners/mono/layerzero.png" alt="LayerZero" width="256" height="256" loading="lazy" decoding="async"></div>
-        <div class="logo"><img src="assets/partners/mono/virtuals.png" alt="Virtuals" width="256" height="256" loading="lazy" decoding="async"></div>
-        <div class="logo"><img src="assets/partners/chaingpt.svg" alt="ChainGPT" width="34" height="34" loading="lazy" decoding="async"></div>
-        <div class="logo"><img src="assets/partners/mono/agentcash.png" alt="AgentCash" width="256" height="256" loading="lazy" decoding="async"></div>
+      <p class="eyebrow rv"><span class="ix">06</span> Built on · integrated · partnered</p>
+      <h2 class="rv" style="--d:1">Standing on <em>serious rails.</em></h2>
+      <div class="logos rv" style="--d:2">
+        <div class="logo"><img src="assets/partners/mono/base.png" alt="Base" width="256" height="256" loading="lazy" decoding="async"><small>Settlement</small></div>
+        <div class="logo"><img src="assets/partners/stripe.svg" alt="Stripe" width="24" height="24" loading="lazy" decoding="async"><small>Payments</small></div>
+        <div class="logo"><img src="assets/partners/google-cloud.svg" alt="Google Cloud" width="24" height="24" loading="lazy" decoding="async"><small>Cloud partner</small></div>
+        <div class="logo"><img src="assets/partners/chainlink.svg" alt="Chainlink" width="24" height="24" loading="lazy" decoding="async"><small>Oracles</small></div>
+        <div class="logo"><img src="assets/partners/mono/layerzero.png" alt="LayerZero" width="256" height="256" loading="lazy" decoding="async"><small>Cross-chain</small></div>
+        <div class="logo"><img src="assets/partners/mono/virtuals.png" alt="Virtuals" width="256" height="256" loading="lazy" decoding="async"><small>Agent commerce</small></div>
+        <div class="logo"><img src="assets/partners/chaingpt.svg" alt="ChainGPT" width="34" height="34" loading="lazy" decoding="async"><small>Ecosystem</small></div>
+        <div class="logo"><img src="assets/partners/mono/agentcash.png" alt="AgentCash" width="256" height="256" loading="lazy" decoding="async"><small>Agent payments</small></div>
       </div>
-      <p class="note">Settlement on Base · payments via Stripe &amp; x402 · oracles via Chainlink · cross-chain via LayerZero · agent commerce via Virtuals · agent payments via AgentCash. Google Cloud Partner · ecosystem partner ChainGPT.</p>
+      <p class="note rv" style="--d:3">Settlement on Base · payments via Stripe &amp; x402 · oracles via Chainlink · cross-chain via LayerZero · agent commerce via Virtuals · agent payments via AgentCash. Google Cloud Partner · ecosystem partner ChainGPT.</p>
     </div>
   </section>
 
   <!-- 8 TRACTION -->
-  <section class="slide">
-    <div class="tint grid"></div>
+  <section class="slide" id="s8" data-title="Traction">
     <div class="wrap">
-      <p class="kick">07 · Traction</p>
-      <h2>Real, on-chain, shipped.</h2>
-      <div class="bignums">
-        <div><div class="v cy">22</div><div class="k">x402 paid endpoints</div></div>
-        <div><div class="v">3</div><div class="k">ERC-8004 contracts · Base mainnet</div></div>
-        <div><div class="v">23</div><div class="k">on-chain agent identities</div></div>
-        <div><div class="v">4</div><div class="k">iOS apps shipped</div></div>
+      <p class="eyebrow rv"><span class="ix">07</span> Traction</p>
+      <h2 class="rv" style="--d:1">Real, on‑chain, <em>shipped.</em></h2>
+      <div class="nums rv" style="--d:2">
+        <div><div class="v" data-count="22">22</div><div class="k">x402 paid endpoints</div></div>
+        <div><div class="v" data-count="3">3</div><div class="k">ERC-8004 contracts · Base mainnet</div></div>
+        <div><div class="v" data-count="23">23</div><div class="k">On-chain agent identities</div></div>
+        <div><div class="v" data-count="4">4</div><div class="k">iOS apps shipped</div></div>
       </div>
-      <ul class="signals">
-        <li><span class="badge">Live</span> &nbsp;ERC-8004 identity, reputation &amp; validation on Base mainnet — agents pay per call in USDC.</li>
-        <li>Producer by Suede Labs — a hireable Virtuals ACP agent for music, video &amp; ACP/x402 consulting.</li>
-        <li>Every contract &amp; transaction is public and verifiable on Base mainnet — proof without trust.</li>
-        <li>Suede Labs AI was ranked the #1 Overall Music Platform by AI Agents Directory.</li>
-        <li>Suede AI Agent Studio and the Suede music/video x402 API are both listed in the community-curated awesome-x402 repository.</li>
+      <ul class="proof rv" style="--d:3">
+        <li><strong>Live:</strong> ERC-8004 identity, reputation &amp; validation on Base mainnet. Agents pay per call in USDC.</li>
+        <li><strong>Producer by Suede Labs:</strong> a hireable Virtuals ACP agent for music, video &amp; ACP/x402 consulting.</li>
+        <li>Every contract &amp; transaction is public and verifiable on Base mainnet. <strong>Proof without trust.</strong></li>
+        <li>Suede Labs AI was ranked the <strong>#1 Overall Music Platform</strong> by AI Agents Directory.</li>
+        <li>Suede AI Agent Studio and the Suede music/video x402 API are both listed in the community-curated <strong>awesome-x402</strong> repository.</li>
       </ul>
     </div>
   </section>
 
   <!-- 9 MARKET -->
-  <section class="slide">
-    <div class="tint grid"></div>
+  <section class="slide alt" id="s9" data-title="Market">
     <div class="wrap">
-      <p class="kick">08 · Market</p>
-      <h2>A settlement layer under a trillion-dollar economy.</h2>
+      <p class="eyebrow rv"><span class="ix">08</span> Market</p>
+      <h2 class="rv" style="--d:1;max-width:24ch">A settlement layer under a <em>trillion-dollar economy.</em></h2>
       <div class="mkt">
-        <div>
-          <svg class="chart" viewBox="0 0 460 280" role="img" aria-label="Creator economy growth 2024 to 2033">
-            <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#22d3ee" stop-opacity=".42"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
-            </linearGradient></defs>
-            <line x1="40" y1="240" x2="450" y2="240" stroke="rgba(255,255,255,.12)"/>
-            <path d="M40,232 L120,214 L200,182 L280,138 L360,96 L450,30 L450,240 L40,240 Z" fill="url(#g)"/>
-            <path d="M40,232 L120,214 L200,182 L280,138 L360,96 L450,30" fill="none" stroke="#22d3ee" stroke-width="2.5"/>
-            <circle cx="40" cy="232" r="4" fill="#22d3ee"/><circle cx="450" cy="30" r="5" fill="#22d3ee"/>
-            <text x="36" y="258" fill="rgba(243,246,251,.55)" font-family="monospace" font-size="12">2024 · $205B</text>
-            <text x="450" y="22" fill="#22d3ee" font-family="monospace" font-size="13" text-anchor="end">2033 · $1.35T</text>
+        <div class="chart-card rv" style="--d:2">
+          <div class="hd"><span>Global creator economy</span><b>~23% CAGR</b></div>
+          <svg class="chart" viewBox="0 0 540 300" role="img" aria-label="Creator economy growth from $205B in 2024 to $1.35T in 2033">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#06cfef" stop-opacity=".35"/><stop offset="1" stop-color="#06cfef" stop-opacity="0"/></linearGradient>
+              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <g stroke="#2a3354" stroke-width="1">
+              <line x1="50" y1="260" x2="510" y2="260"/>
+              <line x1="50" y1="177.9" x2="510" y2="177.9" stroke-dasharray="3 5"/>
+              <line x1="50" y1="95.7" x2="510" y2="95.7" stroke-dasharray="3 5"/>
+            </g>
+            <g fill="#8a94b8" font-size="11">
+              <text x="42" y="264" text-anchor="end">0</text>
+              <text x="42" y="182" text-anchor="end">$500B</text>
+              <text x="42" y="100" text-anchor="end">$1T</text>
+              <text x="50" y="284" text-anchor="middle">2024</text>
+              <text x="200" y="284" text-anchor="middle">2027</text>
+              <text x="350" y="284" text-anchor="middle">2030</text>
+              <text x="500" y="284" text-anchor="middle">2033</text>
+            </g>
+            <path class="area" d="M50,226.3 L100,218.4 L150,208.7 L200,196.9 L250,182.1 L300,164.1 L350,141.7 L400,114.1 L450,80.1 L500,38.2 L500,260 L50,260 Z" fill="url(#g)"/>
+            <path class="ln" d="M50,226.3 L100,218.4 L150,208.7 L200,196.9 L250,182.1 L300,164.1 L350,141.7 L400,114.1 L450,80.1 L500,38.2" fill="none" stroke="#06cfef" stroke-width="2.5" stroke-linejoin="round" filter="url(#glow)"/>
+            <circle cx="50" cy="226.3" r="4" fill="#06cfef"/>
+            <g class="end">
+              <circle cx="500" cy="38.2" r="11" fill="#06cfef" opacity=".18"/><circle cx="500" cy="38.2" r="5" fill="#06cfef"/>
+              <text x="488" y="26" fill="#ffffff" font-size="13" text-anchor="end">2033 · $1.35T</text>
+            </g>
+            <text x="62" y="214" fill="#b4bcd6" font-size="11">2024 · $205B</text>
           </svg>
-          <p class="note" style="margin-top:.6rem">Global creator economy · ~23% CAGR (Grand View Research, 2025)</p>
+          <p class="note" style="margin-top:.4rem">Grand View Research, 2025. Intermediate years plotted at the reported CAGR.</p>
         </div>
-        <div style="display:grid;gap:1rem">
-          <div class="mcard"><span class="n">TAM · creator economy</span><div class="v cy">$1.35T</div><p>by 2033, from $205B in 2024 — the media our rails sit under.</p></div>
+        <div class="stack rv" style="--d:3">
+          <div class="mcard"><span class="n">TAM · creator economy</span><div class="v">$1.35T</div><p>by 2033, from $205B in 2024. The media our rails sit under.</p></div>
           <div class="mcard"><span class="n">SAM · rights + royalties</span><div class="v">~$19B</div><p>IP-management + DRM software (~13% CAGR) plus $13.6B/yr in royalty collections.</p></div>
-          <div class="mcard"><span class="n">Tailwind · AI + agents</span><div class="v">$385B</div><p>agent-driven commerce GMV by 2030; GenAI content → $80B by 2030.</p></div>
+          <div class="mcard"><span class="n">Tailwind · AI + agents</span><div class="v">$385B</div><p>agent-driven commerce GMV by 2030; GenAI content reaches $80B by 2030.</p></div>
         </div>
       </div>
-      <p class="note">Sources: Grand View Research · Fortune Business Insights · IFPI / CISAC · Goldman Sachs · Morgan Stanley (2024–2025) — full citations on the final slide.</p>
+      <p class="note rv" style="--d:4">Sources: Grand View Research · Fortune Business Insights · IFPI / CISAC · Goldman Sachs · Morgan Stanley (2024–2025). Full citations in the appendix.</p>
     </div>
   </section>
 
   <!-- 10 BUSINESS MODEL -->
-  <section class="slide">
-    <div class="tint grid"></div>
+  <section class="slide" id="s10" data-title="Business model">
     <div class="wrap">
-      <p class="kick">09 · Business model</p>
-      <h2>Multiple rails — several already in production.</h2>
-      <div class="cards c2">
-        <div class="cell"><span class="n">Live</span><h3>Agent commerce (x402)</h3><p>Per-call USDC pricing across 22 endpoints; no-account agent payments.</p></div>
-        <div class="cell"><span class="n">Live</span><h3>Credits &amp; subscription</h3><p>Creator-side generation &amp; workflow access via credits / plans.</p></div>
-        <div class="cell"><span class="n">Rail</span><h3>Vault / royalty take-rate</h3><p>Participation &amp; settlement fees on royalty and ownership flows.</p></div>
-        <div class="cell"><span class="n">Rail</span><h3>Registry &amp; licensing</h3><p>Proof-of-creation, licensing templates &amp; verification fees.</p></div>
+      <p class="eyebrow rv"><span class="ix">09</span> Business model</p>
+      <h2 class="rv" style="--d:1">Multiple rails. <em>Several already in production.</em></h2>
+      <div class="grid-cards g2 model">
+        <div class="card rv" style="--d:2"><span class="status on">Live</span><h3>Agent commerce (x402)</h3><p>Per-call USDC pricing across 22 endpoints; no-account agent payments.</p></div>
+        <div class="card rv" style="--d:3"><span class="status on">Live</span><h3>Credits &amp; subscription</h3><p>Creator-side generation &amp; workflow access via credits / plans.</p></div>
+        <div class="card rv" style="--d:4"><span class="status off">Rail</span><h3>Vault / royalty take-rate</h3><p>Participation &amp; settlement fees on royalty and ownership flows.</p></div>
+        <div class="card rv" style="--d:5"><span class="status off">Rail</span><h3>Registry &amp; licensing</h3><p>Proof-of-creation, licensing templates &amp; verification fees.</p></div>
       </div>
     </div>
   </section>
 
   <!-- 11 FOUNDER -->
-  <section class="slide">
-    <div class="tint grid"></div>
-    <div class="wrap two imgL">
-      <div><img class="founder-img" src="assets/founder.png" alt="Jason Colapietro, Founder and CEO of Suede Labs AI" width="1060" height="1484" loading="lazy" decoding="async"></div>
+  <section class="slide alt" id="s11" data-title="Founder">
+    <div class="wrap two flip">
+      <figure class="portrait rv">
+        <img src="assets/founder.png" alt="Jason Colapietro, Founder and CEO of Suede Labs AI" width="1060" height="1484" loading="lazy" decoding="async">
+        <figcaption><b>Jason Colapietro</b>Founder &amp; CEO · "Johnny Suede"</figcaption>
+      </figure>
       <div>
-        <p class="kick">10 · Founder</p>
-        <h2 style="font-size:clamp(2rem,1rem+2.6vw,3.4rem)">Jason Colapietro</h2>
-        <p class="lede" style="margin-top:.8rem"><strong>Founder &amp; CEO, Suede Labs AI</strong> · "Johnny Suede." Published author of three books; solo operator behind the shipped Suede ecosystem.</p>
-        <p class="pull" style="margin-top:1.4rem">"The internet upgraded access. AI upgraded creation. <span class="cy" style="font-style:normal">The next layer has to upgrade ownership.</span>"</p>
-        <div style="display:flex;align-items:center;gap:1.2rem;margin-top:1.6rem">
-          <img class="book" src="assets/book.jpg" alt="Stake Your Claim" width="1600" height="2400" loading="lazy" decoding="async">
-          <p class="note" style="margin:0">Author of three books, including <em>Stake Your Claim</em> — the thesis on AI ownership, authorship &amp; durable creative rights.</p>
+        <p class="eyebrow rv"><span class="ix">10</span> Founder</p>
+        <h2 class="rv" style="--d:1">Jason <em>Colapietro</em></h2>
+        <p class="lede rv" style="--d:2"><strong>Founder &amp; CEO, Suede Labs AI</strong> · "Johnny Suede." Published author of three books; solo operator behind the shipped Suede ecosystem.</p>
+        <p class="pull rv" style="--d:3">"The internet upgraded access. AI upgraded creation. <em>The next layer has to upgrade ownership.</em>"</p>
+        <div class="book rv" style="--d:4">
+          <img src="assets/book.jpg" alt="Stake Your Claim book cover" width="1600" height="2400" loading="lazy" decoding="async">
+          <p>Author of three books, including <em>Stake Your Claim</em>: the thesis on AI ownership, authorship &amp; durable creative rights.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- 12 THE ASK -->
-  <section class="slide">
-    <img class="bgimg" src="assets/split-bg.png" alt="" width="2880" height="1620" loading="lazy" decoding="async" style="opacity:.5">
-    <div class="scrim" style="background:linear-gradient(180deg,rgba(5,11,22,.7),rgba(5,11,22,.92))"></div>
+  <section class="slide ask" id="s12" data-title="The ask">
     <div class="wrap">
-      <p class="kick">11 · The ask</p>
-      <h2>Raising to deepen the rails and scale what already ships.</h2>
-      <p class="lede">Round size, instrument and terms shared directly — book an intro call below. Suede Labs AI is an early-stage company building the programmable-IP and creator-ownership layer for the AI media era.</p>
-      <div class="cards c3" style="margin-top:1.4rem">
-        <div class="cell"><span class="n">Use of funds</span><h3>Engineering</h3><p>Ownership &amp; settlement rails — registry, proof, royalty routing.</p></div>
-        <div class="cell"><span class="n">Use of funds</span><h3>Distribution</h3><p>Creator &amp; agent acquisition across the shipped surfaces.</p></div>
-        <div class="cell"><span class="n">Use of funds</span><h3>Standards &amp; registry</h3><p>ERC-8004 / x402 depth, compliance &amp; system-of-record.</p></div>
+      <p class="eyebrow rv"><span class="ix">11</span> The ask</p>
+      <h2 class="rv" style="--d:1">Raising to deepen the rails and <em>scale what already ships.</em></h2>
+      <p class="lede rv" style="--d:2">Round size, instrument and terms shared directly. Book an intro call below. Suede Labs AI is an early-stage company building the programmable-IP and creator-ownership layer for the AI media era.</p>
+      <div class="grid-cards g3">
+        <div class="card rv" style="--d:3"><span class="num">01</span><span class="tag">Use of funds</span><h3>Engineering</h3><p>Ownership &amp; settlement rails: registry, proof, royalty routing.</p></div>
+        <div class="card rv" style="--d:4"><span class="num">02</span><span class="tag">Use of funds</span><h3>Distribution</h3><p>Creator &amp; agent acquisition across the shipped surfaces.</p></div>
+        <div class="card rv" style="--d:5"><span class="num">03</span><span class="tag">Use of funds</span><h3>Standards &amp; registry</h3><p>ERC-8004 / x402 depth, compliance &amp; system-of-record.</p></div>
       </div>
-      <a class="cta" href="https://cal.com/johnny-suede-g12izk/investor-intro">Book an intro call →</a>
-      <p class="note">suedeai.org/investors · info@suedeai.org · Confidential — do not distribute.</p>
+      <div class="cta-row rv" style="--d:6">
+        <a class="cta" href="https://cal.com/johnny-suede-g12izk/investor-intro">Book an intro call <span class="arr">→</span></a>
+        <p class="contact">suedeai.org/investors · <a href="mailto:info@suedeai.org">info@suedeai.org</a><br>Confidential. Do not distribute.</p>
+      </div>
     </div>
   </section>
 
   <!-- 13 SOURCES -->
-  <section class="slide">
-    <div class="tint grid"></div>
+  <section class="slide" id="s13" data-title="Citations">
     <div class="wrap">
-      <p class="kick">Appendix · Market citations</p>
-      <h2 style="font-size:clamp(1.5rem,1rem+1.6vw,2.2rem);max-width:none">Every market figure, sourced.</h2>
-      <table class="ledger">
+      <p class="eyebrow rv"><span class="ix">A</span> Appendix · Market citations</p>
+      <h2 class="rv" style="--d:1;font-size:clamp(1.9rem,1rem + 2vw,3rem);max-width:none">Every market figure, <em>sourced.</em></h2>
+      <table class="ledger rv" style="--d:2">
         <thead><tr><th>Market</th><th>Figure</th><th>Source · year</th></tr></thead>
         <tbody>
-          <tr><td>Creator economy</td><td>$205.25B (2024) → $1.35T by 2033 · 23.3% CAGR</td><td><span>Grand View Research · 2025</span></td></tr>
-          <tr><td>GenAI content creation</td><td>$14.8B (2024) → $80.12B by 2030 · 32.5% CAGR</td><td><span>Grand View Research · 2024</span></td></tr>
-          <tr><td>IP-management software</td><td>$14.06B (2025) → $42.53B by 2034 · 13.1% CAGR</td><td><span>Fortune Business Insights · 2025</span></td></tr>
-          <tr><td>Digital rights management</td><td>$5.35B (2024) → $19.15B by 2034 · 13.6% CAGR</td><td><span>Market.us · 2024</span></td></tr>
-          <tr><td>Songwriter / publisher royalties</td><td>$13.63B collected (2024, +7.2%)</td><td><span>CISAC via MBW · 2025</span></td></tr>
-          <tr><td>Music copyright value</td><td>$47.2B (2024)</td><td><span>Pivotal Economics / Will Page · 2024</span></td></tr>
-          <tr><td>Agentic commerce</td><td>$190B–$385B US GMV by 2030</td><td><span>Morgan Stanley · 2025</span></td></tr>
+          <tr><td>Creator economy</td><td>$205.25B (2024) → $1.35T by 2033 · 23.3% CAGR</td><td>Grand View Research · 2025</td></tr>
+          <tr><td>GenAI content creation</td><td>$14.8B (2024) → $80.12B by 2030 · 32.5% CAGR</td><td>Grand View Research · 2024</td></tr>
+          <tr><td>IP-management software</td><td>$14.06B (2025) → $42.53B by 2034 · 13.1% CAGR</td><td>Fortune Business Insights · 2025</td></tr>
+          <tr><td>Digital rights management</td><td>$5.35B (2024) → $19.15B by 2034 · 13.6% CAGR</td><td>Market.us · 2024</td></tr>
+          <tr><td>Songwriter / publisher royalties</td><td>$13.63B collected (2024, +7.2%)</td><td>CISAC via MBW · 2025</td></tr>
+          <tr><td>Music copyright value</td><td>$47.2B (2024)</td><td>Pivotal Economics / Will Page · 2024</td></tr>
+          <tr><td>Agentic commerce</td><td>$190B–$385B US GMV by 2030</td><td>Morgan Stanley · 2025</td></tr>
         </tbody>
       </table>
-      <p class="note">Suede on-chain proof verifiable at app.suedeai.ai/.well-known/x402.json &amp; Base mainnet (ERC-8004).</p>
+      <p class="note rv" style="--d:3">Suede on-chain proof verifiable at app.suedeai.ai/.well-known/x402.json &amp; Base mainnet (ERC-8004).</p>
+      <div class="closer rv" style="--d:4"><svg aria-hidden="true"><use href="#smark"/></svg>Suede Labs AI · The ownership layer for the AI media era</div>
     </div>
   </section>
 
@@ -423,18 +679,60 @@ a:focus-visible,.cta:focus-visible{outline:2px solid var(--cyan);outline-offset:
 <script>
 (function(){
   var deck=document.getElementById('deck'),slides=[].slice.call(deck.querySelectorAll('.slide'));
-  var cur=document.getElementById('cur'),prog=document.getElementById('prog'),n=slides.length;
+  var cur=document.getElementById('cur'),prog=document.getElementById('prog'),dots=document.getElementById('dots'),n=slides.length;
   var reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function idx(){var y=deck.scrollTop+innerHeight*0.4,i=0;for(var j=0;j<n;j++)if(slides[j].offsetTop<=y)i=j;return i}
-  function up(){var i=idx();cur.textContent=String(i+1).padStart(2,'0');prog.style.width=((i+1)/n*100)+'%'}
-  deck.addEventListener('scroll',function(){requestAnimationFrame(up)},{passive:true});
-  function go(d){var i=Math.max(0,Math.min(n-1,idx()+d));deck.scrollTo({top:slides[i].offsetTop,behavior:reduceMotion?'auto':'smooth'})}
-  addEventListener('keydown',function(e){
-    if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key) && document.activeElement===document.body){e.preventDefault();go(1)}
-    else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(-1)}
-    else if(e.key==='Home')deck.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'});
-    else if(e.key==='End')deck.scrollTo({top:deck.scrollHeight,behavior:reduceMotion?'auto':'smooth'});
+  document.getElementById('tot').textContent=String(n).padStart(2,'0');
+
+  // side navigation
+  var links=slides.map(function(s,i){
+    var a=document.createElement('a');a.href='#'+s.id;
+    a.innerHTML='<span>'+String(i+1).padStart(2,'0')+' · '+s.getAttribute('data-title')+'</span><i></i>';
+    a.setAttribute('aria-label','Slide '+(i+1)+': '+s.getAttribute('data-title'));
+    a.addEventListener('click',function(e){e.preventDefault();to(i)});
+    dots.appendChild(a);return a;
   });
+
+  function idx(){var y=deck.scrollTop+innerHeight*0.4,i=0;for(var j=0;j<n;j++)if(slides[j].offsetTop<=y)i=j;return i}
+  var last=-1;
+  function up(){var i=idx();if(i===last)return;last=i;
+    cur.textContent=String(i+1).padStart(2,'0');prog.style.transform='scaleX('+((i+1)/n)+')';
+    links.forEach(function(a,j){a.setAttribute('aria-current',j===i?'true':'false')});}
+  deck.addEventListener('scroll',function(){requestAnimationFrame(up)},{passive:true});
+  function to(i){deck.scrollTo({top:slides[i].offsetTop,behavior:reduceMotion?'auto':'smooth'})}
+  function go(d){to(Math.max(0,Math.min(n-1,idx()+d)))}
+  addEventListener('keydown',function(e){
+    var t=e.target.tagName;if(t==='INPUT'||t==='TEXTAREA')return;
+    if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key) && (document.activeElement===document.body||document.activeElement===deck)){e.preventDefault();go(1)}
+    else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(-1)}
+    else if(e.key==='Home'){e.preventDefault();to(0)}
+    else if(e.key==='End'){e.preventDefault();to(n-1)}
+  });
+
+  // count-up numbers
+  function count(el){var end=+el.getAttribute('data-count');if(reduceMotion){el.textContent=end;return}
+    var t0=null,dur=1400;el.textContent='0';
+    function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);el.textContent=Math.round(end*e);if(p<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);}
+
+  // reveal on enter
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');
+        [].forEach.call(e.target.querySelectorAll('[data-count]'),function(el){if(!el.dataset.done){el.dataset.done=1;setTimeout(function(){count(el)},300)}});
+        io.unobserve(e.target);}
+    })},{root:deck,threshold:.25});
+    slides.forEach(function(s){io.observe(s)});
+  } else slides.forEach(function(s){s.classList.add('in')});
+  addEventListener('beforeprint',function(){slides.forEach(function(s){s.classList.add('in')})});
+
+  // copy install command
+  [].forEach.call(document.querySelectorAll('[data-copy]'),function(b){
+    b.addEventListener('click',function(){
+      var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1600)};
+      if(navigator.clipboard)navigator.clipboard.writeText(b.getAttribute('data-copy')).then(done,function(){});
+    });
+  });
+
   up();
 })();
 </script>
