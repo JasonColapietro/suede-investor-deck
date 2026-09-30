@@ -7,7 +7,7 @@
   const APPS = {
     tuner: { name: 'Suede Guitar Tuner &amp; Studio', img: 'suede-guitar-tuner-studio', line: 'Polyphonic strobe tuner &amp; session capture' },
     voice: { name: 'Suede Voice', img: 'suede-voice', line: 'Vocal range test &amp; warmups' },
-    fret: { name: 'FretPulse', img: 'fretpulse', line: 'Guitar practice with real-time notation' },
+    fret: { name: 'FretPulse', img: 'fretpulse', line: 'Guitar practice with <span style="white-space:nowrap">real-time</span> notation' },
     hub: { name: 'GuitarHub', img: 'guitarhub', line: '21 guided beginner lessons' },
     muse: { name: 'Suede Studio Muse', img: 'suede-studio-muse', line: 'Nightly songwriting prompts' },
     gen: { name: 'Suede AI Generator', img: 'suede-ai-generator', line: 'AI music ideas &amp; saved creative records' },
@@ -25,7 +25,7 @@
   const ANDROID = ['Suede: AI Music Generator', 'Suede: Guitar Forum &amp; Gear', 'Suede AI Agents: Directory'];
 
   // --- layout
-  const IS = 128, GAP_IN = 32, GAP_GRP = 80, ROW_Y = 536;
+  const IS = 128, GAP_IN = 32, GAP_GRP = 80, ROW_Y = 492;
   const order = [];            // flat list of {key, gi, j, x (centre)}
   {
     let x = 160;
@@ -35,7 +35,7 @@
     });
   }
   const FEAT = [{ key: 'tuner', x: 540 }, { key: 'muse', x: 960 }, { key: 'studio', x: 1380 }];
-  const PH_Y = 478, PH_SCALE = .97, LBL_ICON_Y = 814, LBL_ICON = 48;
+  const PH_Y = 472, PH_SCALE = .97, LBL_ICON_Y = 821, LBL_ICON = 48;
   const MINI = 64, MINI_GAP = 18, MINI_Y = 420;
   const miniX = (i) => 960 - (9 * MINI + 8 * MINI_GAP) / 2 + MINI / 2 + i * (MINI + MINI_GAP);
 
@@ -50,6 +50,8 @@
   .scene-ios .grp .rule i{position:absolute;inset:0;background:var(--accent);transform-origin:0 50%;transform:scaleX(0)}
   .scene-ios .nm{position:absolute;top:${ROW_Y + IS / 2 + 24}px;width:156px;margin-left:-78px;text-align:center;
     font:500 20px/1.3 var(--sans);color:var(--body);text-wrap:balance}
+  .scene-ios .ol{position:absolute;top:${ROW_Y + IS / 2 + 24 + 66}px;width:156px;margin-left:-78px;text-align:center;
+    font:400 18px/1.35 var(--sans);color:var(--muted);text-wrap:balance}
   .scene-ios .phone{box-shadow:0 0 0 1.5px #4a5680,0 40px 90px -30px rgba(0,0,0,.85)}
   .scene-ios .phone.hero{box-shadow:0 0 0 1.5px #4a5680,0 40px 90px -30px rgba(0,0,0,.85),0 0 90px -40px var(--accent-glow)}
   .scene-ios .phone .scr{background:radial-gradient(120% 70% at 100% 0%,#12234f 0%,#0c1127 55%,#080c1d 100%)}
@@ -234,6 +236,7 @@
         return { g, gl: g.querySelector('.gl'), rule: g.querySelector('.rule'), fill: g.querySelector('.rule i') };
       });
       const names = order.map(o => { const n = el('div', 'nm', root, APPS[o.key].name); n.style.left = o.x + 'px'; return n; });
+      const olines = order.map(o => { const n = el('div', 'ol', root, APPS[o.key].line); n.style.left = o.x + 'px'; return n; });
 
       // phones (built before icons so icons fly over them)
       const phones = FEAT.map((f, i) => {
@@ -282,9 +285,16 @@
           g.g.style.opacity = 1 - exA;
         });
         names.forEach((n, i) => {
-          const p = prog(t, 1.3 + i * .035, .5);
+          const p = prog(t, 1.45 + i * .035, .5);
           n.style.opacity = p * (1 - exA);
           n.style.transform = `translateY(${(1 - p) * 8}px)`;
+          const o = olines[i], po = prog(t, 1.85 + i * .035, .5);
+          o.style.opacity = po * (1 - exA);
+          o.style.transform = `translateY(${(1 - po) * 8}px)`;
+          // the lit cluster's one-liners brighten with its rule
+          const a = 2.7 + order[i].gi * .62;
+          const lit = prog(t, a, .3) * (1 - prog(t, a + .75, .45, E.inOut));
+          o.style.color = `rgb(${lerp(138, 180, lit)},${lerp(148, 188, lit)},${lerp(184, 214, lit)})`;
         });
 
         // ---------- icons: land → (featured) fly to phone labels → regroup into mini row
@@ -293,8 +303,10 @@
         order.forEach((o, i) => {
           const d = icons[i];
           const fi = FEAT.findIndex(f => f.key === o.key);
-          const pl = prog(t, .3 + o.gi * .1 + o.j * .06, 1.0, E.out);
-          let cx = o.x, cy = ROW_Y + (1 - pl) * 40, size = IS * (.92 + .08 * pl), op = clamp(pl * 1.5);
+          // match cut: every icon emerges from the lit iOS card tile of the map and flies to its slot
+          const src = Film.__iosTile || { x: 1435, y: 560, size: 58 };
+          const pl = prog(t, .15 + o.gi * .09 + o.j * .05, 1.35, E.inOut);
+          let cx = lerp(src.x, o.x, pl), cy = lerp(src.y, ROW_Y, pl), size = lerp(src.size, IS, pl), op = clamp(pl * 6);
           const mx = miniX(i);
           if (fi >= 0) {
             const lx = FEAT[fi].x, ly = LBL_ICON_Y;

@@ -30,7 +30,7 @@
   // clockwise from 12 o'clock
   const NODES = [
     { th: 30, name: 'Web', desc: 'suedeai.ai · suedeai.org', ic: 'web' },
-    { th: 90, name: 'iOS', desc: '9 apps', ic: 'ios' },
+    { th: 90, name: 'iOS', desc: '9 apps · +3 on Android', ic: 'ios' },
     { th: 150, name: 'Chrome', desc: '2 extensions', ic: 'chrome' },
     { th: 210, name: 'Agents &amp; API', desc: 'x402 · MCP · SDKs', ic: 'api' },
     { th: 270, name: 'On-chain', desc: 'ERC-8004 · 23 identities', ic: 'chain' },
@@ -54,11 +54,11 @@
   .scene-map .hub .dash{width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:50%;border:1px dashed rgba(58,70,112,.8)}
   .scene-map .hub .pulse{width:236px;height:236px;margin:-118px 0 0 -118px;border-radius:50%;border:1px solid var(--accent);opacity:0}
   .scene-map .hub svg.mk{width:124px;height:124px;margin:-62px 0 0 -62px;overflow:visible}
-  .scene-map .hub .lbl{top:172px;white-space:nowrap;transform:translateX(-50%);font:500 20px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--body)}
+  .scene-map .hub .lbl{top:172px;white-space:nowrap;transform:translateX(-50%);font:500 22px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--body)}
   .scene-map .spine{position:absolute;left:120px;top:${C.y - 1}px;width:1680px;height:2px;transform-origin:50% 50%;
     background:linear-gradient(90deg,transparent,var(--accent) 18%,var(--accent) 82%,transparent)}
-  .scene-map .card{position:absolute;width:${CW}px;height:${CH}px;margin:${-CH / 2}px 0 0 ${-CW / 2}px;border-radius:12px;
-    display:flex;align-items:center;gap:20px;padding:0 24px 0 20px;
+  .scene-map .card{position:absolute;height:${CH}px;white-space:nowrap;border-radius:12px;
+    display:flex;align-items:center;gap:20px;padding:0 32px 0 20px;
     background:linear-gradient(180deg,var(--surface-2),var(--surface));border:1px solid var(--hairline);
     box-shadow:0 30px 60px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.04)}
   .scene-map .card .ic{flex:none;width:56px;height:56px;border-radius:12px;display:grid;place-items:center;
@@ -85,21 +85,38 @@
       const lay = Film.layer(cam, 1);
       const orbit = svg('ellipse', { cx: C.x, cy: C.y, rx: RX, ry: RY, fill: 'none', stroke: 'rgba(58,70,112,.55)', 'stroke-width': 1.25, 'stroke-dasharray': '3 9' }, lay);
 
-      const spokes = NODES.map(n => {
-        const dx = n.x - C.x, dy = n.y - C.y, L = Math.hypot(dx, dy);
-        const ux = dx / L, uy = dy / L;
-        const s = Math.max(Math.abs(dx) / (CW / 2), Math.abs(dy) / (CH / 2));
-        const a = { x: C.x + ux * 150, y: C.y + uy * 150 };
-        const b = { x: n.x - dx / s, y: n.y - dy / s };
-        const glow = svg('path', { d: `M${a.x} ${a.y}L${b.x} ${b.y}`, fill: 'none', stroke: 'var(--accent)', 'stroke-width': 6, 'stroke-linecap': 'round', opacity: 0 }, lay);
+      const spokes = NODES.map(() => {
+        const glow = svg('path', { d: 'M0 0', fill: 'none', stroke: 'var(--accent)', 'stroke-width': 6, 'stroke-linecap': 'round', opacity: 0 }, lay);
         glow.style.filter = 'blur(4px)';
-        const p = svg('path', { d: `M${a.x} ${a.y}L${b.x} ${b.y}`, fill: 'none', stroke: 'var(--hairline-2)', 'stroke-width': 1.5, 'stroke-linecap': 'round' }, lay);
-        const len = Math.hypot(b.x - a.x, b.y - a.y);
-        p.style.strokeDasharray = `${len} ${len}`;
-        const port = svg('circle', { cx: b.x, cy: b.y, r: 4.5, fill: '#161f3c', stroke: 'var(--hairline-2)', 'stroke-width': 1.25 }, lay);
-        const ring = svg('circle', { cx: b.x, cy: b.y, r: 5, fill: 'none', stroke: 'var(--accent)', 'stroke-width': 1.5, opacity: 0 }, lay);
-        return { a, b, p, glow, len, port, ring };
+        const p = svg('path', { d: 'M0 0', fill: 'none', stroke: 'var(--hairline-2)', 'stroke-width': 1.5, 'stroke-linecap': 'round' }, lay);
+        const port = svg('circle', { r: 4.5, fill: '#161f3c', stroke: 'var(--hairline-2)', 'stroke-width': 1.25 }, lay);
+        const ring = svg('circle', { r: 5, fill: 'none', stroke: 'var(--accent)', 'stroke-width': 1.5, opacity: 0 }, lay);
+        return { a: { x: 0, y: 0 }, b: { x: 0, y: 0 }, p, glow, len: 1, port, ring };
       });
+      // cards are sized to their content; geometry is fitted once fonts are ready (first update)
+      let fitted = false;
+      const fit = () => {
+        fitted = true;
+        NODES.forEach((n, i) => {
+          const c = cards[i], w = c.offsetWidth, h = c.offsetHeight;
+          c.style.marginLeft = -w / 2 + 'px'; c.style.marginTop = -h / 2 + 'px';
+          const sp = spokes[i];
+          const dx = n.x - C.x, dy = n.y - C.y, L = Math.hypot(dx, dy);
+          const s = Math.max(Math.abs(dx) / (w / 2), Math.abs(dy) / (h / 2));
+          sp.a = { x: C.x + dx / L * 150, y: C.y + dy / L * 150 };
+          sp.b = { x: n.x - dx / s, y: n.y - dy / s };
+          const d = `M${sp.a.x} ${sp.a.y}L${sp.b.x} ${sp.b.y}`;
+          sp.p.setAttribute('d', d); sp.glow.setAttribute('d', d);
+          sp.len = Math.hypot(sp.b.x - sp.a.x, sp.b.y - sp.a.y);
+          sp.p.style.strokeDasharray = `${sp.len} ${sp.len}`;
+          [sp.port, sp.ring].forEach(k => { k.setAttribute('cx', sp.b.x); k.setAttribute('cy', sp.b.y); });
+          if (n.ic === 'ios') {
+            // hand the iOS icon-tile position (in final camera space) to the next scene for a match cut
+            const tx = n.x - w / 2 + 1 + 20 + 28, ty = n.y;
+            Film.__iosTile = { x: 960 + (tx - 960) * 1.03, y: 560 + (ty - 560) * 1.03, size: 56 * 1.03 };
+          }
+        });
+      };
 
       // hub
       const hub = el('div', 'hub', cam);
@@ -128,6 +145,7 @@
       const pks = [0, 1, 2].map(() => el('div', 'pk', cam));
 
       return (t, dur) => {
+        if (!fitted) fit();
         root.style.opacity = Film.env(t, 0, dur, .6, .8);
         // slow drift, felt not seen
         const drift = prog(t, 0, dur, E.inOut);
@@ -157,6 +175,8 @@
         const pl = prog(t, 1.5, .45);
         lbl.style.opacity = pl;
         lbl.style.letterSpacing = lerp(.26, .16, pl) + 'em';
+        const lc = prog(t, 3.2, .45);
+        lbl.style.color = `rgb(${lerp(180, 255, lc)},${lerp(188, 255, lc)},${lerp(214, 255, lc)})`;
         // pulse rings (hub is the subject) — 4s cycle, 3 staggered
         pulses.forEach((r, i) => {
           const ph = t - 1.6 - i * 1.33;
