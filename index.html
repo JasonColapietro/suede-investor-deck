@@ -233,12 +233,13 @@ html:not(.js) .pipe .rail i{transform:none}
 .wedge{display:inline-block;margin-top:.9rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:.3rem .8rem;background:var(--accent-soft)}
 
 /* PARTNERS */
-.logos{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:2.6rem;background:var(--hairline);border:1px solid var(--hairline);border-radius:12px;overflow:hidden}
-.logo{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.9rem;height:150px;padding:1.4rem;background:var(--surface);transition:background .35s var(--ease)}
+.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:2.6rem;background:var(--hairline);border:1px solid var(--hairline);border-radius:12px;overflow:hidden}
+.logo{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;height:118px;padding:1.4rem;background:var(--surface);transition:background .35s var(--ease)}
 .logo::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 120%,rgba(6,207,239,.18),transparent);opacity:0;transition:opacity .35s}
 .logo:hover{background:var(--surface-2)}.logo:hover::after{opacity:1}
 .logo img{height:32px;width:auto;max-width:60%;object-fit:contain;filter:brightness(0) invert(1);opacity:.7;transition:opacity .3s,transform .3s var(--ease)}
 .logo:hover img{opacity:1;transform:translateY(-3px)}
+.logo:last-child:nth-child(4n+3){grid-column:span 2}
 .logo .wordmark{font-family:var(--mono);font-weight:600;font-size:1.6rem;letter-spacing:.04em;color:var(--ink);opacity:.8;line-height:32px;transition:opacity .3s,transform .3s var(--ease)}
 .logo:hover .wordmark{opacity:1;transform:translateY(-3px)}
 .logo small{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
@@ -282,8 +283,7 @@ html:not(.js) .chart .ln{stroke-dashoffset:0}html:not(.js) .chart .area{opacity:
 .status.off{color:var(--muted);border:1px solid var(--hairline-2)}
 .status.off::before{content:"";width:6px;height:6px;border-radius:50%;border:1px solid var(--muted)}
 .model .card{padding:1.3rem 1.25rem}
-.g5.model .card p{font-size:.86rem;line-height:1.5}
-.model-build{margin-top:1rem}
+.g4.model .card p{font-size:.86rem;line-height:1.5}
 .model .card h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.35rem,1rem + .7vw,1.75rem);margin:.75rem 0 .4rem;letter-spacing:-.005em}
 
 /* FOUNDER */
@@ -541,8 +541,9 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
         <div class="logo"><img src="assets/partners/mono/agentcash.png" alt="AgentCash" width="256" height="256" loading="lazy" decoding="async"><small>Agent payments</small></div>
         <div class="logo"><span class="wordmark">x402</span><small>Agent payments protocol</small></div>
         <div class="logo"><span class="wordmark">A2A</span><small>Agent-to-agent protocol</small></div>
+        <div class="logo"><span class="wordmark">AP2</span><small>Agent payments protocol</small></div>
       </div>
-      <p class="note rv" style="--d:3">Partners: Base (settlement) · Stripe (payments) · Google Cloud · Chainlink (oracles) · LayerZero (cross-chain) · Virtuals (ACP agent commerce) · ChainGPT · AgentCash (agent payments) · x402 (agent payments protocol) · A2A (agent-to-agent protocol).</p>
+      <p class="note rv" style="--d:3">Partners: Base (settlement) · Stripe (payments) · Google Cloud · Chainlink (oracles) · LayerZero (cross-chain) · Virtuals (ACP agent commerce) · ChainGPT · AgentCash (agent payments) · x402 (agent payments protocol) · A2A (agent-to-agent protocol) · AP2 (agent payments protocol).</p>
     </div>
   </section>
 
@@ -622,16 +623,15 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
     <div class="wrap">
       <p class="eyebrow rv"><span class="ix">09</span> Business model</p>
       <h2 class="rv" style="--d:1">Multiple rails. <em>Several already in production.</em></h2>
-      <div class="grid-cards g5 model">
+      <div class="grid-cards g4 model">
         <div class="card rv" style="--d:2"><span class="status on">Live · Partner</span><h3>Agent commerce (x402)</h3><p>39 live endpoints on Base. Agents pay per call in USDC with no account: music $0.50, image $0.15, video $4.99; Strumly $0.99–$4.99.</p></div>
         <div class="card rv" style="--d:3"><span class="status on">Live · Partner</span><h3>Virtuals ACP</h3><p>Producer by Suede AI, a hireable agent: 854 paid jobs for other agents, $1,853.79 gross, 4.33 rating.</p></div>
         <div class="card rv" style="--d:4"><span class="status on">Live · Partner</span><h3>A2A</h3><p>Agent cards on app.suedeai.ai and Agent Studio expose 35 skills for agent-to-agent discovery and calls.</p></div>
-        <div class="card rv" style="--d:5"><span class="status on">Live</span><h3>MCP &amp; SDKs</h3><p>@suedeai/mcp-server and the ElizaOS plugin on npm, suede-ai on PyPI: every call pays over x402.</p></div>
-        <div class="card rv" style="--d:6"><span class="status on">Live</span><h3>Credits &amp; subscription</h3><p>Creator-side generation &amp; workflow access via credits / plans.</p></div>
-      </div>
-      <div class="grid-cards g2 model model-build">
-        <div class="card rv" style="--d:7"><span class="status off">Rail</span><h3>Vault / royalty take-rate</h3><p>Participation &amp; settlement fees on royalty and ownership flows, on royalty vaults live in the app.</p></div>
-        <div class="card rv" style="--d:8"><span class="status off">Rail</span><h3>Registry &amp; licensing</h3><p>Licenses agents buy against registry claims, plus verification fees.</p></div>
+        <div class="card rv" style="--d:5"><span class="status on">Live · Partner</span><h3>AP2</h3><p>Agent Studio authorizes merchants over AP2 v0.2 before x402 settlement.</p></div>
+        <div class="card rv" style="--d:6"><span class="status on">Live</span><h3>MCP &amp; SDKs</h3><p>@suedeai/mcp-server and the ElizaOS plugin on npm, suede-ai on PyPI: every call pays over x402.</p></div>
+        <div class="card rv" style="--d:7"><span class="status on">Live</span><h3>Credits &amp; subscription</h3><p>Creator-side generation &amp; workflow access via credits / plans.</p></div>
+        <div class="card rv" style="--d:8"><span class="status off">Rail</span><h3>Vault / royalty take-rate</h3><p>Participation &amp; settlement fees on royalty and ownership flows, on royalty vaults live in the app.</p></div>
+        <div class="card rv" style="--d:9"><span class="status off">Rail</span><h3>Registry &amp; licensing</h3><p>Licenses agents buy against registry claims, plus verification fees.</p></div>
       </div>
     </div>
   </section>
