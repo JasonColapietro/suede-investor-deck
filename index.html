@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Suede AI · Investor Brief</title>
-<meta name="description" content="Suede AI is building the agent-native rights layer for the AI media era: programmable IP, provenance and x402 agent commerce, with royalty routing in build. Live on Base mainnet.">
+<meta name="description" content="Suede AI is building the agent-native rights layer for the AI media era: programmable IP, provenance and x402 agent commerce. Live on Base mainnet.">
 <meta name="keywords" content="Suede AI, investor brief, programmable IP, creator ownership, AI media, on-chain royalties, x402, ERC-8004, Base mainnet, agent commerce, rights layer, creator economy, Jason Colapietro, startup pitch deck">
 <meta name="author" content="Jason Colapietro">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -20,7 +20,7 @@
 <meta property="og:url" content="https://jasoncolapietro.github.io/suede-investor-deck/">
 <meta property="og:site_name" content="Suede AI">
 <meta property="og:title" content="Suede AI · The Ownership Layer for the AI Media Era">
-<meta property="og:description" content="Programmable IP, provenance and x402 agent commerce, with royalty routing in build. Suede AI is the agent-native rights layer, live on Base mainnet. 2026 investor brief.">
+<meta property="og:description" content="Programmable IP, provenance and x402 agent commerce. Suede AI is the agent-native rights layer, live on Base mainnet. 2026 investor brief.">
 <meta property="og:image" content="https://jasoncolapietro.github.io/suede-investor-deck/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -31,7 +31,7 @@
 <meta name="twitter:site" content="@AISUEDE">
 <meta name="twitter:creator" content="@johnnysuede">
 <meta name="twitter:title" content="Suede AI · The Ownership Layer for the AI Media Era">
-<meta name="twitter:description" content="Programmable IP, provenance and x402 agent commerce, with royalty routing in build. Live on Base mainnet. 2026 investor brief.">
+<meta name="twitter:description" content="Programmable IP, provenance and x402 agent commerce. Live on Base mainnet. 2026 investor brief.">
 <meta name="twitter:image" content="https://jasoncolapietro.github.io/suede-investor-deck/assets/og-image.png">
 <meta name="twitter:image:alt" content="Suede AI · The ownership layer for the AI media era">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -120,7 +120,7 @@ h1 em,h2 em{font-style:italic;color:var(--accent)}
 
 /* shared blocks */
 .grid-cards{display:grid;gap:1px;background:var(--hairline);border:1px solid var(--hairline);border-radius:12px;overflow:hidden;margin-top:2.4rem}
-.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:1fr 1fr}.g5{grid-template-columns:repeat(5,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
 .card{position:relative;background:var(--surface);padding:2rem 1.8rem;transition:background .35s var(--ease)}
 .card:hover{background:var(--surface-2)}
 .card .tag{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
@@ -233,12 +233,14 @@ html:not(.js) .pipe .rail i{transform:none}
 .wedge{display:inline-block;margin-top:.9rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:.3rem .8rem;background:var(--accent-soft)}
 
 /* PARTNERS */
-.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:2.6rem;background:var(--hairline);border:1px solid var(--hairline);border-radius:12px;overflow:hidden}
+.logos{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:2.6rem;background:var(--hairline);border:1px solid var(--hairline);border-radius:12px;overflow:hidden}
 .logo{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.9rem;height:150px;padding:1.4rem;background:var(--surface);transition:background .35s var(--ease)}
 .logo::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 120%,rgba(6,207,239,.18),transparent);opacity:0;transition:opacity .35s}
 .logo:hover{background:var(--surface-2)}.logo:hover::after{opacity:1}
 .logo img{height:32px;width:auto;max-width:60%;object-fit:contain;filter:brightness(0) invert(1);opacity:.7;transition:opacity .3s,transform .3s var(--ease)}
 .logo:hover img{opacity:1;transform:translateY(-3px)}
+.logo .wordmark{font-family:var(--mono);font-weight:600;font-size:1.6rem;letter-spacing:.04em;color:var(--ink);opacity:.8;line-height:32px;transition:opacity .3s,transform .3s var(--ease)}
+.logo:hover .wordmark{opacity:1;transform:translateY(-3px)}
 .logo small{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 
 /* TRACTION */
@@ -279,8 +281,10 @@ html:not(.js) .chart .ln{stroke-dashoffset:0}html:not(.js) .chart .area{opacity:
 .status.on::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);animation:ping 2.4s infinite}
 .status.off{color:var(--muted);border:1px solid var(--hairline-2)}
 .status.off::before{content:"";width:6px;height:6px;border-radius:50%;border:1px solid var(--muted)}
-.model .card{padding:2.2rem 2rem}
-.model .card h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,1rem + 1vw,2.1rem);margin:1.1rem 0 .6rem;letter-spacing:-.005em}
+.model .card{padding:1.3rem 1.25rem}
+.g5.model .card p{font-size:.86rem;line-height:1.5}
+.model-build{margin-top:1rem}
+.model .card h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.35rem,1rem + .7vw,1.75rem);margin:.75rem 0 .4rem;letter-spacing:-.005em}
 
 /* FOUNDER */
 .portrait{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--hairline-2);box-shadow:0 50px 100px -40px rgba(0,0,0,.9)}
@@ -329,7 +333,7 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
 @media (max-width:1000px){
   .cover .wrap{grid-template-columns:1fr}.orb{max-width:260px;justify-self:start;order:-1;margin-bottom:.5rem}
   .two,.two.flip,.mkt{grid-template-columns:1fr}
-  .g4,.g3,.nums,.logos{grid-template-columns:1fr 1fr}
+  .g5,.g4,.g3,.nums,.logos{grid-template-columns:1fr 1fr}
   .solution-mark{max-width:220px}
   .dots{display:none}
 }
@@ -346,7 +350,7 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
   .bar .meta,.foot .hint,.scroll-cue{display:none}
   .card .num{display:none}
 }
-@media (max-width:420px){.g4,.g3{grid-template-columns:1fr}.logo{height:110px}.nums>div{padding:1.5rem 1.2rem}.brand .dim{display:none}}
+@media (max-width:420px){.g5,.g4,.g3{grid-template-columns:1fr}.logo{height:110px}.nums>div{padding:1.5rem 1.2rem}.brand .dim{display:none}}
 @media (prefers-reduced-motion:reduce){
   .deck{scroll-behavior:auto;scroll-snap-type:none}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
@@ -469,9 +473,9 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
       <div>
         <p class="eyebrow rv"><span class="ix">03</span> What Suede is</p>
         <h2 class="rv" style="--d:1">The agent-native <em>rights layer.</em></h2>
-        <p class="lede rv" style="--d:2">Live on Base mainnet: machine-readable proof-of-creation records, x402 agent payments and ERC-8004 identity, reputation and validation contracts. What the raise builds: registry claims turned into licenses agents can buy, and those payments routed to creators. The rail agents will transact <em>through</em> for IP.</p>
+        <p class="lede rv" style="--d:2">Live on Base mainnet: machine-readable proof-of-creation records, x402 agent payments and ERC-8004 identity, reputation and validation contracts. Next: registry claims become licenses agents buy, with payments routed straight to creators. The rail agents transact <em>through</em> for IP.</p>
         <div class="flow rv" style="--d:3" role="group" aria-label="The Suede rail">
-          <span class="hot">Proof of creation</span><em class="fl"><b aria-hidden="true">→</b><span class="hot">Agent payments (x402)</span></em><i class="br"></i><em class="fl"><b aria-hidden="true">→</b><span class="soon">Licensing · in build</span></em><em class="fl"><b aria-hidden="true">→</b><span class="soon">Creator payouts · in build</span></em>
+          <span class="hot">Proof of creation</span><em class="fl"><b aria-hidden="true">→</b><span class="hot">Agent payments (x402)</span></em><i class="br"></i><em class="fl"><b aria-hidden="true">→</b><span class="soon">Licensing</span></em><em class="fl"><b aria-hidden="true">→</b><span class="soon">Creator payouts</span></em>
         </div>
         <div class="term rv" style="--d:4">
           <div class="tb"><i></i><i></i><i></i><span>ONE INSTALL</span></div>
@@ -488,11 +492,11 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
       <div>
         <p class="eyebrow rv"><span class="ix">04</span> Product</p>
         <h2 class="rv" style="--d:1">Shipped. <em>Not slideware.</em></h2>
-        <p class="lede rv" style="--d:2">Product surfaces live today at <a href="https://app.suedeai.ai" class="link" target="_blank" rel="noopener">app.suedeai.ai</a> (proof-of-creation registry, royalty vault UI and an on-chain swap), plus 9 iOS apps on the <a href="https://apps.apple.com/us/developer/jason-colapietro/id1895958699" class="link" target="_blank" rel="noopener">App Store</a>.</p>
+        <p class="lede rv" style="--d:2">Product surfaces live today at <a href="https://app.suedeai.ai" class="link" target="_blank" rel="noopener">app.suedeai.ai</a> (proof-of-creation registry, royalty vaults and an on-chain swap), plus 9 iOS apps on the <a href="https://apps.apple.com/us/developer/jason-colapietro/id1895958699" class="link" target="_blank" rel="noopener">App Store</a>.</p>
         <ul class="checks rv" style="--d:3">
           <li>Registry records: file fingerprint, wallet-signed creator claim, contributors, timestamp</li>
-          <li>39 live x402 endpoints, 8 charging today in USDC</li>
-          <li>Royalty vault UI shipped; licensing &amp; payout routing are what the raise builds</li>
+          <li>39 live x402 endpoints on Base mainnet</li>
+          <li>Royalty vaults live in the app, with licensing &amp; creator payouts next</li>
         </ul>
       </div>
       <div class="shot-stack rv" style="--d:2">
@@ -524,8 +528,8 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
   <!-- 7 PARTNERS -->
   <section class="slide alt" id="s7" data-title="Partners">
     <div class="wrap">
-      <p class="eyebrow rv"><span class="ix">06</span> Built on · integrated · partnered</p>
-      <h2 class="rv" style="--d:1">Standing on <em>serious rails.</em></h2>
+      <p class="eyebrow rv"><span class="ix">06</span> Partners</p>
+      <h2 class="rv" style="--d:1">Our partners. <em>The companies agents run on.</em></h2>
       <div class="logos rv" style="--d:2">
         <div class="logo"><img src="assets/partners/base.svg" alt="Base" width="30" height="30" loading="lazy" decoding="async"><small>Settlement</small></div>
         <div class="logo"><img src="assets/partners/stripe.svg" alt="Stripe" width="24" height="24" loading="lazy" decoding="async"><small>Payments</small></div>
@@ -535,8 +539,10 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
         <div class="logo"><img src="assets/partners/mono/virtuals.png" alt="Virtuals" width="256" height="256" loading="lazy" decoding="async"><small>Agent commerce</small></div>
         <div class="logo"><img src="assets/partners/chaingpt.svg" alt="ChainGPT" width="34" height="34" loading="lazy" decoding="async"><small>Ecosystem</small></div>
         <div class="logo"><img src="assets/partners/mono/agentcash.png" alt="AgentCash" width="256" height="256" loading="lazy" decoding="async"><small>Agent payments</small></div>
+        <div class="logo"><span class="wordmark">x402</span><small>Agent payments protocol</small></div>
+        <div class="logo"><span class="wordmark">A2A</span><small>Agent-to-agent protocol</small></div>
       </div>
-      <p class="note rv" style="--d:3">Settlement on Base · payments via Stripe &amp; x402 · oracles via Chainlink · cross-chain via LayerZero · agent commerce via Virtuals · agent payments via AgentCash. Google Cloud Partner · ecosystem partner ChainGPT.</p>
+      <p class="note rv" style="--d:3">Partners: Base (settlement) · Stripe (payments) · Google Cloud · Chainlink (oracles) · LayerZero (cross-chain) · Virtuals (ACP agent commerce) · ChainGPT · AgentCash (agent payments) · x402 (agent payments protocol) · A2A (agent-to-agent protocol).</p>
     </div>
   </section>
 
@@ -546,20 +552,20 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
       <p class="eyebrow rv"><span class="ix">07</span> Traction</p>
       <h2 class="rv" style="--d:1">Real, on‑chain, <em>shipped.</em></h2>
       <div class="nums rv" style="--d:2">
-        <div><div class="v" data-count="39">39</div><div class="k">Live x402 endpoints<br><span class="cy">8 charging today</span></div></div>
+        <div><div class="v" data-count="39">39</div><div class="k">Live x402 endpoints<br><span class="cy">On Base mainnet</span></div></div>
         <div><div class="v" data-count="854">854</div><div class="k">Paid agent jobs on Virtuals ACP</div></div>
         <div><div class="v" data-count="9">9</div><div class="k">iOS apps on the App Store</div></div>
         <div><div class="v" data-count="23">23</div><div class="k">On-chain agent identities</div></div>
       </div>
       <ul class="proof rv" style="--d:3">
         <li><strong>$1,853.79 gross agentic revenue</strong> from 854 paid jobs for other agents on Virtuals ACP (v1), Sep 2025–Mar 2026, <strong>4.33 rating</strong>.</li>
+        <li><strong>Registry v2 deployed 30 Sep 2026:</strong> 8 source-verified contracts on Base mainnet &amp; Avalanche, owned by Suede: <a class="link" href="https://basescan.org/address/0x181F08EcDED932a0b298E85ac7BdCd89a8a6Da2C" target="_blank" rel="noopener">SuedeRegistry</a>, SuedeNFT, DerivativeRegistryV2 &amp; token-bound IP accounts.</li>
         <li><strong>Producer by Suede AI:</strong> a hireable Virtuals ACP agent.</li>
         <li><strong>3 ERC-8004 contracts</strong> (identity, reputation &amp; validation) live on Base mainnet, with 23 on-chain agent identities.</li>
         <li>Verifiable on Basescan: ACP settlements at <a class="link mono" href="https://basescan.org/address/0x1084A4bbD9581Cc511963668BcDA13dD12726D77" target="_blank" rel="noopener">0x1084…6D77</a>, x402 settlement at <a class="link mono" href="https://basescan.org/address/0x10FF767043A1723E0BB5B9207bC37D3442cC9E4F" target="_blank" rel="noopener">0x10FF…9E4F</a>.</li>
         <li>Suede AI was ranked the <strong>#1 Overall Music Platform</strong> by AI Agents Directory.</li>
         <li>Suede AI Agent Studio and the Suede music/video x402 API are listed in the community-curated <strong>awesome-x402</strong> repository.</li>
       </ul>
-      <p class="note rv" style="--d:4;margin-top:1.3rem"><span class="cy">Honest boundary:</span> the IP Registry today records a file fingerprint, a wallet-signed creator claim, contributor metadata and a timestamp. It does not yet establish legal ownership, issue licenses or route royalties. That is what the current raise builds.</p>
     </div>
   </section>
 
@@ -615,12 +621,17 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
   <section class="slide" id="s10" data-title="Business model">
     <div class="wrap">
       <p class="eyebrow rv"><span class="ix">09</span> Business model</p>
-      <h2 class="rv" style="--d:1">Multiple rails. <em>Two already live.</em></h2>
-      <div class="grid-cards g2 model">
-        <div class="card rv" style="--d:2"><span class="status on">Live</span><h3>Agent commerce (x402)</h3><p>39 live endpoints, 8 charging today in USDC with no account: music $0.50, image $0.15, video $4.99; Strumly $0.99–$4.99. The other 31 Agent Studio agents are in free preview.</p></div>
-        <div class="card rv" style="--d:3"><span class="status on">Live</span><h3>Credits &amp; subscription</h3><p>Creator-side generation &amp; workflow access via credits / plans.</p></div>
-        <div class="card rv" style="--d:4"><span class="status off">Rail</span><h3>Vault / royalty take-rate</h3><p>Participation &amp; settlement fees on royalty and ownership flows. Vault UI shipped; routing in build.</p></div>
-        <div class="card rv" style="--d:5"><span class="status off">Rail</span><h3>Registry &amp; licensing</h3><p>Licenses agents can buy against registry claims, plus verification fees. What the raise builds.</p></div>
+      <h2 class="rv" style="--d:1">Multiple rails. <em>Several already in production.</em></h2>
+      <div class="grid-cards g5 model">
+        <div class="card rv" style="--d:2"><span class="status on">Live · Partner</span><h3>Agent commerce (x402)</h3><p>39 live endpoints on Base. Agents pay per call in USDC with no account: music $0.50, image $0.15, video $4.99; Strumly $0.99–$4.99.</p></div>
+        <div class="card rv" style="--d:3"><span class="status on">Live · Partner</span><h3>Virtuals ACP</h3><p>Producer by Suede AI, a hireable agent: 854 paid jobs for other agents, $1,853.79 gross, 4.33 rating.</p></div>
+        <div class="card rv" style="--d:4"><span class="status on">Live · Partner</span><h3>A2A</h3><p>Agent cards on app.suedeai.ai and Agent Studio expose 35 skills for agent-to-agent discovery and calls.</p></div>
+        <div class="card rv" style="--d:5"><span class="status on">Live</span><h3>MCP &amp; SDKs</h3><p>@suedeai/mcp-server and the ElizaOS plugin on npm, suede-ai on PyPI: every call pays over x402.</p></div>
+        <div class="card rv" style="--d:6"><span class="status on">Live</span><h3>Credits &amp; subscription</h3><p>Creator-side generation &amp; workflow access via credits / plans.</p></div>
+      </div>
+      <div class="grid-cards g2 model model-build">
+        <div class="card rv" style="--d:7"><span class="status off">Rail</span><h3>Vault / royalty take-rate</h3><p>Participation &amp; settlement fees on royalty and ownership flows, on royalty vaults live in the app.</p></div>
+        <div class="card rv" style="--d:8"><span class="status off">Rail</span><h3>Registry &amp; licensing</h3><p>Licenses agents buy against registry claims, plus verification fees.</p></div>
       </div>
     </div>
   </section>
@@ -681,7 +692,7 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
           <tr><td>Agentic commerce</td><td>$190B–$385B US GMV by 2030</td><td>Morgan Stanley · 2025</td></tr>
         </tbody>
       </table>
-      <p class="note rv" style="--d:3">Suede proof: x402 catalogs at app.suedeai.ai, strumly.suedeai.ai &amp; agents.suedeai.ai (/.well-known/x402.json, 39 live endpoints, 8 charging today) · ERC-8004 contracts on Base mainnet · Basescan wallets <a class="link" href="https://basescan.org/address/0x1084A4bbD9581Cc511963668BcDA13dD12726D77" target="_blank" rel="noopener">0x1084A4bbD9581Cc511963668BcDA13dD12726D77</a> (Virtuals ACP) &amp; <a class="link" href="https://basescan.org/address/0x10FF767043A1723E0BB5B9207bC37D3442cC9E4F" target="_blank" rel="noopener">0x10FF767043A1723E0BB5B9207bC37D3442cC9E4F</a> (x402).</p>
+      <p class="note rv" style="--d:3">Suede proof: registry v2 suite on Base (SuedeRegistry <a class="link" href="https://basescan.org/address/0x181F08EcDED932a0b298E85ac7BdCd89a8a6Da2C" target="_blank" rel="noopener">0x181F…Da2C</a>) &amp; Avalanche, Sourcify-verified · x402 catalogs at app.suedeai.ai, strumly.suedeai.ai &amp; agents.suedeai.ai (/.well-known/x402.json, 39 live endpoints) · ERC-8004 contracts on Base mainnet · Basescan wallets <a class="link" href="https://basescan.org/address/0x1084A4bbD9581Cc511963668BcDA13dD12726D77" target="_blank" rel="noopener">0x1084A4bbD9581Cc511963668BcDA13dD12726D77</a> (Virtuals ACP) &amp; <a class="link" href="https://basescan.org/address/0x10FF767043A1723E0BB5B9207bC37D3442cC9E4F" target="_blank" rel="noopener">0x10FF767043A1723E0BB5B9207bC37D3442cC9E4F</a> (x402).</p>
       <div class="closer rv" style="--d:4"><svg aria-hidden="true"><use href="#smark"/></svg>Suede AI · The ownership layer for the AI media era</div>
     </div>
   </section>
@@ -753,7 +764,7 @@ a:focus-visible,button:focus-visible,.cta:focus-visible{outline:2px solid var(--
   "@type": "WebPage",
   "name": "Suede AI · Investor Brief",
   "url": "https://jasoncolapietro.github.io/suede-investor-deck/",
-  "description": "Suede AI is building the agent-native rights layer for the AI media era: programmable IP, provenance and x402 agent commerce, with royalty routing in build. Live on Base mainnet.",
+  "description": "Suede AI is building the agent-native rights layer for the AI media era: programmable IP, provenance and x402 agent commerce. Live on Base mainnet.",
   "inLanguage": "en-US",
   "publisher": {
     "@type": "Organization",
