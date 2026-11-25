@@ -1,4 +1,4 @@
-# Suede AI — Investor Brief
+# Suede · Investor Brief
 
 **Live deck: [jasoncolapietro.github.io/suede-investor-deck](https://jasoncolapietro.github.io/suede-investor-deck/)**
 
